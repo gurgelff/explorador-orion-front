@@ -5,6 +5,4 @@ import { Injectable } from '@angular/core';
 })
 export class AuthGuardService {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() { }
 }
