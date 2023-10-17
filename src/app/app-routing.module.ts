@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'pages',
     loadChildren: (): Promise<Type<PagesModule> | PagesModule[]> => import('./pages/pages.module').then(m => m.PagesModule)
   },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'auth' }
 ];
 
 @NgModule({
