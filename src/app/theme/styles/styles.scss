@@ -1,0 +1,19 @@
+// Importa as variáveis de cores
+@import "./colors.scss";
+
+// Importa todos os estilos globais da aplicação
+@import "./global-styles.scss";
+
+.container-form {
+  height: 100%;
+  border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.email-input {
+  width: 50%;
+  border: 1px solid #f2f2f2;
+  border-radius: 6px;
+}
