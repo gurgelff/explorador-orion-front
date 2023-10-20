@@ -1,0 +1,132 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+@import "./colors.scss";
+
+:root {
+  // checkbox
+  --mdc-checkbox-selected-checkmark-color: #979797;
+  --mdc-checkbox-unselected-hover-icon-color: #b9b9b9;
+  --mdc-checkbox-unselected-icon-color: #ffffff;
+  --mdc-checkbox-unselected-focus-icon-color: #ffffff;
+  --mdc-checkbox-unselected-focus-state-layer-color: #ffffff;
+  --mdc-checkbox-unselected-hover-state-layer-color: #b9b9b9;
+  --mdc-checkbox-unselected-pressed-state-layer-color: #ba8e73;
+  --mdc-theme-text-primary-on-background: #ffffff;
+  --mat-option-selected-state-label-text-color: #ba8e73;
+
+  // inputs
+  --mdc-outlined-text-field-outline-color: #ffffff;
+  --mdc-outlined-text-field-hover-outline-color: #b9b9b9;
+  --mdc-outlined-text-field-label-text-color: #ffffff;
+  --mdc-outlined-text-field-input-text-color: #ffffff;
+
+  // button
+  .mat-mdc-unelevated-button.mat-primary {
+    --mdc-filled-button-container-color: #ba8e73;
+    --mdc-filled-button-label-text-color: #ffffff;
+  }
+}
+
+$primary-palette: (
+  100: $primary-100,
+  300: $primary-300,
+  500: $primary-500,
+  700: $primary-700,
+  900: $primary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$accent-palette: (
+  100: $secondary-100,
+  300: $secondary-300,
+  500: $secondary-500,
+  700: $secondary-700,
+  900: $secondary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$warn-palette: (
+  100: $secondary-100,
+  300: $secondary-300,
+  500: $secondary-500,
+  700: $secondary-700,
+  900: $secondary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$danger-palette: (
+  100: $secondary-100,
+  300: $secondary-300,
+  500: $secondary-500,
+  700: $secondary-700,
+  900: $secondary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$primary-theme: mat.define-palette($primary-palette, 500);
+$accent-theme: mat.define-palette($accent-palette, 500);
+$warn-theme: mat.define-palette($danger-palette, 500);
+
+$system-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary-theme,
+      accent: $accent-theme,
+      warn: $warn-theme,
+    ),
+  )
+);
+
+@include mat.all-component-themes($system-theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: url(../../../assets/images/background1.png) no-repeat center
+    center fixed;
+  background-size: cover;
+  background-color: black;
+  color: white;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+section {
+  margin: 0;
+}

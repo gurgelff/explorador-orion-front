@@ -1,4 +1,34 @@
-<input [(ngModel)]="requestLogin.email" type="text" placeholder="E-mail">
-<input [(ngModel)]="requestLogin.password" type="text" placeholder="Senha">
-<button (click)="login()">Entrar</button>
+<section class="container">
+  <section class="display-text">
+    <h1>Bem vindo(a)!</h1>
+    <p>Por favor, preencha os campos abaixo para logar.</p>
+  </section>
+  <section class="input-section">
+    <mat-form-field appearance="outline" class="email-input">
+      <mat-label>E-mail</mat-label>
+      <input [(ngModel)]="requestLogin.email" matInput type="email" placeholder="Ex. nome@gmail.com">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input [(ngModel)]="requestLogin.password" matInput [type]="hide ? 'password' : 'text'" placeholder="Senha">
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        class="outline-btn"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </section>
+  <section class="login-section">
+    <mat-checkbox>Lembrar de mim</mat-checkbox>
+    <p>Esqueceu a senha?</p>
+  </section>
+  <section class="button-section">
+    <button mat-flat-button color="primary" class="btn-enter"  (click)="login()">Entrar</button>
+  </section>
+</section>
 <p *ngIf="showError">{{ errorMessage }}</p>

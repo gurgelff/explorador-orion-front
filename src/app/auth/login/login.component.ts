@@ -7,13 +7,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  requestLogin: IRequestLogin = {
-    email: '',
-    password: ''
-  };
+  public requestLogin: IRequestLogin;
+  public hide = true;
   public showError!: boolean;
   public errorMessage!: string;
 
@@ -21,7 +19,9 @@ export class LoginComponent {
     private authAPI: AuthAPI,
     private storageService: StorageService,
     private router: Router
-  ){}
+  ){
+    this.requestLogin = {email: '', password: ''};
+  }
 
   /**
  * Tenta efetuar o login.
