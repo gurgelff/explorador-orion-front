@@ -1,0 +1,64 @@
+@import "../../theme/styles/theme.scss";
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: normal;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.display-text,
+.input-section,
+.login-section {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  padding: 0;
+}
+
+.login-section {
+  margin-bottom: 2rem;
+}
+
+.login-section,
+.display-text,
+.input-section {
+  width: 450px;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.login-section {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-enter {
+  width: 28rem;
+  padding: 1.5rem 0.5rem;
+  border-radius: 0.35rem;
+  opacity: 0.3;
+  background: #979797;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-enter {
+  padding: 1.5rem 0.5rem;
+}
