@@ -1,4 +1,4 @@
-<input [(ngModel)]="requestLogin.username" type="text" placeholder="E-mail">
+<input [(ngModel)]="requestLogin.email" type="text" placeholder="E-mail">
 <input [(ngModel)]="requestLogin.password" type="text" placeholder="Senha">
-<button (click)="tentarLogin()">Entrar</button>
-<p *ngIf="mostrarErro">{{ mensagemErro }}</p>
+<button (click)="login()">Entrar</button>
+<p *ngIf="showError">{{ errorMessage }}</p>

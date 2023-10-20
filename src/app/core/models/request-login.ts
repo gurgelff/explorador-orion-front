@@ -1,4 +1,4 @@
 export interface IRequestLogin {
-    username: string;
+    email: string;
     password: string;
-  }
+}

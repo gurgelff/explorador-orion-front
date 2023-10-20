@@ -1,3 +1,6 @@
 export interface IResponseLogin {
-  access_token: string;
-  }
+  status: boolean;
+  data: {
+    token: string;
+  };
+}

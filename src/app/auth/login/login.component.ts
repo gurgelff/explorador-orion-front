@@ -1,8 +1,8 @@
+import { StorageService } from './../../core/services/storage.service';
+import { AuthAPI } from '../../core/api/auth.api';
 import { Router } from '@angular/router';
 import { IRequestLogin } from './../../core/models/request-login';
-import { AuthGuardService } from './../../core/services/auth-guard.service';
 import { Component } from '@angular/core';
-import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,29 +11,37 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
 })
 export class LoginComponent {
   requestLogin: IRequestLogin = {
-    username: '',
+    email: '',
     password: ''
   };
-
-  mostrarErro!: boolean;
-  mensagemErro!: string;
+  public showError!: boolean;
+  public errorMessage!: string;
 
   constructor(
-    private authGuardService: AuthGuardService,
-    private tokenStorageService: TokenStorageService,
+    private authAPI: AuthAPI,
+    private storageService: StorageService,
     private router: Router
   ){}
 
-  tentarLogin(): void{
-    this.authGuardService.tentarLogin(this.requestLogin).subscribe(
-      data => {
-        this.router.navigate(['/loading']);
-        this.tokenStorageService.storeToken(data.access_token);
-      },
-      error => {
-        this.mostrarErro = true;
-        this.mensagemErro = error.error.message;
-      }
-    )    
+  /**
+ * Tenta efetuar o login.
+ * SUCESSO = Navega para pages.
+ * FALHA = Exibe mensagem de erro.
+ */
+  public login(): void {
+    if (this.requestLogin) {
+      this.authAPI.login(this.requestLogin).subscribe(
+        data => {
+          this.router.navigate(['/pages']);
+          this.storageService.setItem('token', data.data.token);
+        },
+        error => {
+          this.showError = true;
+          this.errorMessage = error.error.message;
+        }
+      );
+    }
   }
+  
+  
 }

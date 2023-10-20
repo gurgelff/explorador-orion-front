@@ -1,32 +1,27 @@
-import { TokenStorageService } from 'src/app/core/services/token-storage.service';
+import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
-import { IRequestLogin } from '../models/request-login';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IResponseLogin } from '../models/response-login';
-import { environment } from 'src/app/environments/environment';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService {
+export class AuthGuardService implements CanActivate {
 
-  apiUrl: string = environment.apiUrl + '/auth/login';
-  
   constructor(
-    private httpClient: HttpClient,
-    private tokenStorageService: TokenStorageService
+    private storageService: StorageService,
+    private router: Router
     ) { }
 
-  tentarLogin(requestLogin: IRequestLogin): Observable<IResponseLogin>{
-    return this.httpClient.post<IResponseLogin>(`${this.apiUrl}`, requestLogin)
-  }
-
-  usuarioAutenticado(): boolean {
-    if (this.tokenStorageService.getToken()) {
+  /*
+  Verifica se o usuário está autenticado antes de permitir o acesso a uma rota.
+  Se não estiver, redireciona para tela de login 
+  */
+  public canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> {
+    if (this.storageService.getItem('token')) {
       return true;
     } else {
-      return false;
+      return this.router.parseUrl('/login');
     }
   }
 }
