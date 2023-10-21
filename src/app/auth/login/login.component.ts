@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,4 +10,35 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
   public hide = true;
+
+  public loginForm: FormGroup;
+
+  constructor(private http: HttpClient) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+        Validators.nullValidator,
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.nullValidator,
+      ]),
+      remember: new FormControl(false),
+    });
+  }
+
+  public onSubmit(): void {
+    const formData = this.loginForm.value;
+
+    this.http.post('/api/login', formData).subscribe(
+      (response) => {
+        console.log('Login bem-sucedido!', response);
+      },
+      (error) => {
+        console.error('Login falhou. Verifique suas credenciais.', error);
+      }
+    );
+  }
 }
