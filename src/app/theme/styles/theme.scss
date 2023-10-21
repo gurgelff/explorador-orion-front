@@ -4,31 +4,6 @@
 
 @import "./colors.scss";
 
-:root {
-  // checkbox
-  --mdc-checkbox-selected-checkmark-color: #979797;
-  --mdc-checkbox-unselected-hover-icon-color: #b9b9b9;
-  --mdc-checkbox-unselected-icon-color: #ffffff;
-  --mdc-checkbox-unselected-focus-icon-color: #ffffff;
-  --mdc-checkbox-unselected-focus-state-layer-color: #ffffff;
-  --mdc-checkbox-unselected-hover-state-layer-color: #b9b9b9;
-  --mdc-checkbox-unselected-pressed-state-layer-color: #ba8e73;
-  --mdc-theme-text-primary-on-background: #ffffff;
-  --mat-option-selected-state-label-text-color: #ba8e73;
-
-  // inputs
-  --mdc-outlined-text-field-outline-color: #ffffff;
-  --mdc-outlined-text-field-hover-outline-color: #b9b9b9;
-  --mdc-outlined-text-field-label-text-color: #ffffff;
-  --mdc-outlined-text-field-input-text-color: #ffffff;
-
-  // button
-  .mat-mdc-unelevated-button.mat-primary {
-    --mdc-filled-button-container-color: #ba8e73;
-    --mdc-filled-button-label-text-color: #ffffff;
-  }
-}
-
 $primary-palette: (
   100: $primary-100,
   300: $primary-300,
@@ -129,4 +104,40 @@ h5,
 h6,
 section {
   margin: 0;
+}
+
+:root {
+  // checkbox
+  --mdc-checkbox-selected-checkmark-color: #979797;
+  --mdc-checkbox-unselected-hover-icon-color: #b9b9b9;
+  --mdc-checkbox-unselected-icon-color: #ffffff;
+  --mdc-checkbox-unselected-focus-icon-color: #ffffff;
+  --mdc-checkbox-unselected-focus-state-layer-color: #ffffff;
+  --mdc-checkbox-unselected-hover-state-layer-color: #b9b9b9;
+  --mdc-checkbox-unselected-pressed-state-layer-color: #ba8e73;
+  --mdc-theme-text-primary-on-background: #ffffff;
+  --mat-option-selected-state-label-text-color: #ba8e73;
+
+  // .mdc-checkbox {
+  //   border-color: #ba8e73;
+  //   background-color: #ba8e73;
+  // }
+
+  // inputs
+  --mdc-outlined-text-field-outline-color: #ffffff;
+  --mdc-outlined-text-field-hover-outline-color: #b9b9b9;
+  --mdc-outlined-text-field-label-text-color: #ffffff;
+  --mdc-outlined-text-field-input-text-color: #ffffff;
+
+  // button
+  .mat-mdc-unelevated-button.mat-primary {
+    background-color: #ba8e73;
+    color: var(--foundation-gray-scale-white, #fff);
+  }
+
+  .mat-mdc-unelevated-button.mat-primary:disabled {
+    background-color: #979797;
+    color: #171717;
+    /* Adicione quaisquer outros estilos desejados para o botão desativado aqui */
+  }
 }
