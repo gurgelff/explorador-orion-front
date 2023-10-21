@@ -17,7 +17,7 @@
         <input
           matInput
           [type]="hide ? 'password' : 'text'"
-          formControlName="senha"
+          formControlName="password"
         />
 
         <button
@@ -30,12 +30,12 @@
         >
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
-        <mat-error *ngIf="loginForm.get('senha')?.hasError('required')"
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
           >Senha é obrigatória</mat-error
         >
       </mat-form-field>
       <section class="login-section">
-        <mat-checkbox formControlName="lembrar">Lembrar de mim</mat-checkbox>
+        <mat-checkbox formControlName="remember">Lembrar de mim</mat-checkbox>
         <p>Esqueceu a senha?</p>
       </section>
       <section class="button-section">
