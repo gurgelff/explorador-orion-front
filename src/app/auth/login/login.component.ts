@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoaderService } from '../../core/services/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +10,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   public hide = true;
-
   public loginForm: FormGroup;
 
-  constructor(private http: HttpClient) {
+  constructor(private loaderService: LoaderService, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -30,15 +29,15 @@ export class LoginComponent {
   }
 
   public onSubmit(): void {
-    const formData = this.loginForm.value;
+    this.loaderService.setLoading(true); // Ativa o loader
 
-    this.http.post('/api/login', formData).subscribe(
-      (response) => {
-        console.log('Login bem-sucedido!', response);
-      },
-      (error) => {
-        console.error('Login falhou. Verifique suas credenciais.', error);
-      }
-    );
+    setTimeout(() => {
+      this.loaderService.setLoading(false);
+
+      const response = { message: 'Login bem-sucedido!' };
+      console.log('Login bem-sucedido!', response);
+
+      this.router.navigate(['dashboard']);
+    }, 2000); // Desativa o loader após 2 segundos
   }
 }
