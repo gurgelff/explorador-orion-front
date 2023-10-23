@@ -1,11 +1,14 @@
 import { Location, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { PasswordChangeMockService } from 'src/app/services/password-reset-mock.component';
-import { ButtonComponent } from './components/button/button.components';
 
 /** @title Form field with error messages */
 @Component({
@@ -14,18 +17,16 @@ import { ButtonComponent } from './components/button/button.components';
   styleUrls: ['password-reset.component.scss'],
   standalone: true,
   imports: [
-      MatFormFieldModule, 
-      MatInputModule, 
-      FormsModule, 
-      ReactiveFormsModule, 
-      NgIf, 
-      ButtonComponent, 
-      RouterModule
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf,
+    RouterModule,
   ],
 })
-
 export class PasswordResetComponent {
-  constructor(private location: Location, private passwordChangeService: PasswordChangeMockService) {
+  constructor(private location: Location) {
     this.location = location;
   }
 

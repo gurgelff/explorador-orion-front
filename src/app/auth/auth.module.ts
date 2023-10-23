@@ -9,8 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
-import { NewPasswordComponent } from './new-password/new-password.component';
-import { ButtonComponent } from './password-reset/components/button/button.components';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
@@ -18,8 +16,6 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
   imports: [
     CommonModule,
     PasswordResetComponent,
-    NewPasswordComponent,
-    ButtonComponent,
     AuthRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
