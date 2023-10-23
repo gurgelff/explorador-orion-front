@@ -5,6 +5,7 @@ import { IRequestLogin } from './../../core/models/request-login';
 import { Component } from '@angular/core';
 import { IResponseLogin } from 'src/app/core/models/response-login';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoaderService } from '../../core/services/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent {
   constructor(
     private authAPI: AuthAPI,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService
   ){
     this.requestLogin = {email: '', password: ''};
     this.loginForm = new FormGroup({
@@ -51,6 +53,10 @@ export class LoginComponent {
     }).catch((error) => {
       this.showError = true;
       this.errorMessage = error;
+    })
+    .finally(() =>{
+      this.loaderService.setLoading(true);
+      this.loaderService.setLoading(false);
     });
   }
   
