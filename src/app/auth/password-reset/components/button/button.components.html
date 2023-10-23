@@ -1,3 +1,10 @@
 <div class="form-btn">
-    <button mat-stroked-button>{{btnName}}</button>
+    <button 
+        [disabled]="isDisabled"
+        (click)="callbackFunction()"
+        mat-flat-button
+        color="primary"
+    >
+        {{btnName}}
+    </button>
 </div>

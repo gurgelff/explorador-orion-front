@@ -13,31 +13,38 @@ import { ButtonComponent } from './components/button/button.components';
   templateUrl: 'password-reset.component.html',
   styleUrls: ['password-reset.component.scss'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, NgIf, ButtonComponent, RouterModule, ],
+  imports: [
+      MatFormFieldModule, 
+      MatInputModule, 
+      FormsModule, 
+      ReactiveFormsModule, 
+      NgIf, 
+      ButtonComponent, 
+      RouterModule
+  ],
 })
 
 export class PasswordResetComponent {
-  constructor(private location: Location, private passwordChangeService: PasswordChangeMockService) {}
+  constructor(private location: Location, private passwordChangeService: PasswordChangeMockService) {
+    this.location = location;
+  }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  public email = new FormControl('', [Validators.required, Validators.email]);
+  public submitBtnBool = !this.email.hasError('required') || false;
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
-
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
   goBack(): void {
     this.location.back();
   }
-  
-  changePassword() {
-    const formData = {}; // Get the form data here
-    this.passwordChangeService.changePassword(formData).subscribe((response) => {
-      console.log(response); 
-      this.goBack();
-    });
+
+  submit(): void {
+    console.log('fdsuhf');
+    this.location.back();
   }
 }
