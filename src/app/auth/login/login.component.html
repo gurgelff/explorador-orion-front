@@ -22,6 +22,7 @@
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
     </mat-form-field>
+    <p *ngIf="showError">{{ errorMessage }}</p>
   </section>
   <section class="login-section">
     <mat-checkbox>Lembrar de mim</mat-checkbox>
@@ -31,4 +32,3 @@
     <button mat-flat-button color="primary" class="btn-enter"  (click)="login()">Entrar</button>
   </section>
 </section>
-<p *ngIf="showError">{{ errorMessage }}</p>

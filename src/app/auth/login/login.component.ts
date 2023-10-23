@@ -3,6 +3,7 @@ import { AuthAPI } from '../../core/api/auth.api';
 import { Router } from '@angular/router';
 import { IRequestLogin } from './../../core/models/request-login';
 import { Component } from '@angular/core';
+import { IResponseLogin } from 'src/app/core/models/response-login';
 
 @Component({
   selector: 'app-login',
@@ -29,19 +30,13 @@ export class LoginComponent {
  * FALHA = Exibe mensagem de erro.
  */
   public login(): void {
-    if (this.requestLogin) {
-      this.authAPI.login(this.requestLogin).subscribe(
-        data => {
-          this.router.navigate(['/pages']);
-          this.storageService.setItem('token', data.data.token);
-        },
-        error => {
-          this.showError = true;
-          this.errorMessage = error.error.message;
-        }
-      );
-    }
+    this.authAPI.login(this.requestLogin).then((data: IResponseLogin) => {
+      this.router.navigate(['/pages']);
+      this.storageService.setItem('token', data.data.token);
+    }).catch((error) => {
+      this.showError = true;
+      this.errorMessage = error;
+    });
   }
-  
   
 }

@@ -1,18 +1,18 @@
+import { IResponseLogin } from './../models/response-login';
 import { Injectable } from "@angular/core";
-import { environment } from "src/app/environments/environment";
-import { IRequestLogin } from "../models/request-login";
-import { IResponseLogin } from "../models/response-login";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { IRequestLogin } from './../models/request-login';
+import { BaseAPI } from './base.api';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthAPI {
+export class AuthAPI extends BaseAPI<IRequestLogin, IResponseLogin> {
 
-  apiUrl: string = environment.apiUrl + '/login';
-  
-  constructor(private httpClient: HttpClient){}
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+    this.apiUrl += '/login';
+  }
 
   /**
    * login
@@ -23,8 +23,8 @@ export class AuthAPI {
    *
    * @returns Resposta da autenticação
    */
-  public login(requestLogin: IRequestLogin): Observable<IResponseLogin>{
-    return this.httpClient.post<IResponseLogin>(`${this.apiUrl}`, requestLogin)
+  public login(requestLogin: IRequestLogin): Promise<IResponseLogin> {
+    return this.post(requestLogin);
   }
-
+  
 }
