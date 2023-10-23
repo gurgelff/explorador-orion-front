@@ -29,15 +29,13 @@ export class LoginComponent {
   }
 
   public onSubmit(): void {
-    this.loaderService.setLoading(true); // Ativa o loader
+    this.loaderService.setLoading(true);
 
-    setTimeout(() => {
-      this.loaderService.setLoading(false);
+    this.loaderService.setLoading(false);
 
-      const response = { message: 'Login bem-sucedido!' };
-      console.log('Login bem-sucedido!', response);
+    const response = { message: 'Login bem-sucedido!' };
+    console.log('Login bem-sucedido!', response);
 
-      this.router.navigate(['dashboard']);
-    }, 2000); // Desativa o loader após 2 segundos
+    this.router.navigate(['dashboard']);
   }
 }
