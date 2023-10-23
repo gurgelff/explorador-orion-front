@@ -37,7 +37,7 @@
       </mat-form-field>
       <p *ngIf="showError">{{ errorMessage }}</p>
       <section class="login-section">
-        <mat-checkbox formControlName="remember">Lembrar de mim</mat-checkbox>
+        <mat-checkbox [(ngModel)]="rememberMe" formControlName="remember">Lembrar de mim</mat-checkbox>
         <p>Esqueceu a senha?</p>
       </section>
       <section class="button-section">

@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { IResponseLogin } from 'src/app/core/models/response-login';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoaderService } from '../../core/services/loader.service';
+import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
   public showError!: boolean;
   public errorMessage!: string;
   public loginForm!: FormGroup;
+  public rememberMe!: boolean;
 
   constructor(
     private authAPI: AuthAPI,
@@ -43,21 +45,20 @@ export class LoginComponent {
 
   /**
  * Tenta efetuar o login.
- * SUCESSO = Navega para pages.
+ * SUCESSO = Navega para pages e guarda token de acordo com checkbox Lembrar de mim.
  * FALHA = Exibe mensagem de erro.
  */
   public login(): void {
-    this.authAPI.login(this.requestLogin).then((data: IResponseLogin) => {
+    this.loaderService.setLoading(true);
+    this.authAPI.login(this.requestLogin).then((response: IResponseLogin) => {
+      this.storageService.setItem('token', response.data.token, this.rememberMe ? EnumStorageType.LOCAL : EnumStorageType.SESSION)
       this.router.navigate(['/pages']);
-      this.storageService.setItem('token', data.data.token);
     }).catch((error) => {
       this.showError = true;
       this.errorMessage = error;
     })
-    .finally(() =>{
-      this.loaderService.setLoading(true);
+    .finally(() => {
       this.loaderService.setLoading(false);
     });
   }
-  
 }
