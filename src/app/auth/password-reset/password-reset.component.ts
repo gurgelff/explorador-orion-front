@@ -26,26 +26,17 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class PasswordResetComponent {
-  constructor(private location: Location) {
-    this.location = location;
-  }
+  private router: any;
 
   public email = new FormControl('', [Validators.required, Validators.email]);
-  public submitBtnBool = !this.email.hasError('required') || false;
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
+  constructor(private location: Location) {}
 
   goBack(): void {
     this.location.back();
   }
 
-  submit(): void {
-    console.log('fdsuhf');
-    this.location.back();
+  onSubmit(): void {
+    this.router.navigate(['/path']);
   }
 }
