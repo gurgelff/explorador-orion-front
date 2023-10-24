@@ -63,7 +63,7 @@ a {
 
 .btn-enter {
   width: 28rem;
-  padding: 1.5rem 0.5rem;
+  padding: 1.2rem 0.5rem;
   border-radius: 0.35rem;
   opacity: 0.3;
   background: #979797;
@@ -71,4 +71,10 @@ a {
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.valid-button-color {
+  background-color: var(--foundation-primary, #ba8e73);
+  opacity: 1;
+  color: white;
 }

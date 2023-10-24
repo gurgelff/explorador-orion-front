@@ -1,4 +1,4 @@
-import { Location, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -9,6 +9,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 /** @title Form field with error messages */
 @Component({
@@ -26,18 +27,15 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class PasswordResetComponent {
-  // private router: any;
-
   public email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private location: Location) {}
+  constructor(private router: Router) {}
 
-  goBack(): void {
-    this.location.back();
+  public goBack(): void {
+    this.router.navigateByUrl('/pages');
   }
 
-  onSubmit(): void {
-    console.log('clicked');
-    // this.router.navigate(['/path']);
+  public onSubmit(): void {
+    this.router.navigate(['/success']);
   }
 }

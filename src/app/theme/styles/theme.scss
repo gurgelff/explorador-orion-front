@@ -118,10 +118,9 @@ section {
   --mdc-theme-text-primary-on-background: #ffffff;
   --mat-option-selected-state-label-text-color: #ba8e73;
 
-  // .mdc-checkbox {
-  //   border-color: #ba8e73;
-  //   background-color: #ba8e73;
-  // }
+  .mat-mdc-form-field-icon-suffix {
+    padding: 10px;
+  }
 
   // inputs
   --mdc-outlined-text-field-outline-color: #ffffff;
@@ -131,7 +130,7 @@ section {
 
   // button
   .mat-mdc-unelevated-button.mat-primary {
-    background-color: #ba8e73;
+    background-color: var(--foundation-primary, #ba8e73);
     opacity: 1;
     color: var(--foundation-gray-scale-white, #fff);
   }

@@ -1,21 +1,20 @@
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './login/login.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [LoginComponent],
   imports: [
     CommonModule,
+
     PasswordResetComponent,
     AuthRoutingModule,
     ReactiveFormsModule,
@@ -23,7 +22,6 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
-    MatButtonModule,
   ],
 })
 export class AuthModule {}
