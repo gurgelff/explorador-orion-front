@@ -26,7 +26,7 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class PasswordResetComponent {
-  private router: any;
+  // private router: any;
 
   public email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -37,6 +37,7 @@ export class PasswordResetComponent {
   }
 
   onSubmit(): void {
-    this.router.navigate(['/path']);
+    console.log('clicked');
+    // this.router.navigate(['/path']);
   }
 }
