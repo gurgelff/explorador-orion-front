@@ -3,7 +3,7 @@
     <h1>Bem vindo(a)!</h1>
     <p>Por favor, preencha os campos abaixo para logar.</p>
   </section>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <section class="input-section">
       <mat-form-field appearance="outline" class="email-input">
         <mat-label>E-mail</mat-label>
@@ -34,8 +34,9 @@
           >Senha é obrigatória</mat-error
         >
       </mat-form-field>
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
       <section class="login-section">
-        <mat-checkbox formControlName="remember">Lembrar de mim</mat-checkbox>
+        <mat-checkbox formControlName="isRememberEnabled">Lembrar de mim</mat-checkbox>
         <p>Esqueceu a senha?</p>
       </section>
       <section class="button-section">

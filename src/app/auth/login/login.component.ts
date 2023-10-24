@@ -1,7 +1,11 @@
+import { StorageService } from './../../core/services/storage.service';
+import { AuthAPI } from '../../core/api/auth.api';
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { IResponseLogin } from 'src/app/core/models/response-login';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoaderService } from '../../core/services/loader.service';
-import { Router } from '@angular/router';
+import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +14,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public hide = true;
+  public errorMessage?: string;
   public loginForm: FormGroup;
 
-  constructor(private loaderService: LoaderService, private router: Router) {
+  constructor(
+    private authAPI: AuthAPI,
+    private storageService: StorageService,
+    private router: Router,
+    private loaderService: LoaderService
+  ){
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -24,18 +34,26 @@ export class LoginComponent {
         Validators.minLength(6),
         Validators.nullValidator,
       ]),
-      remember: new FormControl(false),
+      isRememberEnabled: new FormControl(false),
     });
   }
 
-  public onSubmit(): void {
+  /**
+   * Realiza o processo de login.
+   * - Define o token de acordo com a opção de "Lembrar de mim".
+   * - Navega para pages em caso de sucesso.
+   * - Exibe uma mensagem de erro em caso de falha.
+   */
+  public login(): void {
     this.loaderService.setLoading(true);
-
-    this.loaderService.setLoading(false);
-
-    const response = { message: 'Login bem-sucedido!' };
-    console.log('Login bem-sucedido!', response);
-
-    this.router.navigate(['dashboard']);
+    this.authAPI.login(this.loginForm.value).then((response: IResponseLogin) => {
+      this.storageService.setItem('token', response.data.token, this.loginForm.controls['isRememberEnabled']?.value ? EnumStorageType.LOCAL : EnumStorageType.SESSION)
+      this.router.navigate(['/pages']);
+    }).catch((error) => {
+      this.errorMessage = error;
+    })
+    .finally(() => {
+      this.loaderService.setLoading(false);
+    });
   }
 }
