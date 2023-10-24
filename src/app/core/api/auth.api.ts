@@ -1,13 +1,13 @@
 import { IResponseLogin } from './../models/response-login';
 import { Injectable } from "@angular/core";
-import { IRequestLogin } from './../models/request-login';
 import { BaseAPI } from './base.api';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthAPI extends BaseAPI<IRequestLogin, IResponseLogin> {
+export class AuthAPI extends BaseAPI<FormGroup, IResponseLogin> {
 
   constructor(httpClient: HttpClient) {
     super(httpClient);
@@ -23,8 +23,8 @@ export class AuthAPI extends BaseAPI<IRequestLogin, IResponseLogin> {
    *
    * @returns Resposta da autenticação
    */
-  public login(requestLogin: IRequestLogin): Promise<IResponseLogin> {
-    return this.post(requestLogin);
+  public login(loginForm: FormGroup): Promise<IResponseLogin> {
+    return this.post(loginForm);
   }
   
 }

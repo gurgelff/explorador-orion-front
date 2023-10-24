@@ -7,7 +7,7 @@
     <section class="input-section">
       <mat-form-field appearance="outline" class="email-input">
         <mat-label>E-mail</mat-label>
-        <input [(ngModel)]="requestLogin.email" type="email" matInput formControlName="email" />
+        <input type="email" matInput formControlName="email" />
         <mat-error *ngIf="loginForm.get('email')?.hasError('email')"
           >E-mail incorreto</mat-error
         >
@@ -15,7 +15,6 @@
       <mat-form-field appearance="outline">
         <mat-label>Senha</mat-label>
         <input
-          [(ngModel)]="requestLogin.password"
           matInput
           [type]="hide ? 'password' : 'text'"
           formControlName="password"
@@ -35,9 +34,9 @@
           >Senha é obrigatória</mat-error
         >
       </mat-form-field>
-      <p *ngIf="showError">{{ errorMessage }}</p>
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
       <section class="login-section">
-        <mat-checkbox [(ngModel)]="rememberMe" formControlName="remember">Lembrar de mim</mat-checkbox>
+        <mat-checkbox formControlName="isRememberEnabled">Lembrar de mim</mat-checkbox>
         <p>Esqueceu a senha?</p>
       </section>
       <section class="button-section">
