@@ -1,3 +1,6 @@
 export interface IResponseLogin {
-    jwt: string;
-  }
+  status: boolean;
+  data: {
+    token: string;
+  };
+}
