@@ -32,10 +32,10 @@ export class PasswordResetComponent {
   constructor(private router: Router) {}
 
   public goBack(): void {
-    this.router.navigateByUrl('/pages');
+    this.router.navigate(['/login']);
   }
 
   public onSubmit(): void {
-    this.router.navigate(['/success']);
+    this.router.navigate(['/pages']);
   }
 }
