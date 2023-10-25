@@ -113,15 +113,22 @@ section {
   --mdc-checkbox-unselected-icon-color: #ffffff;
   --mdc-checkbox-unselected-focus-icon-color: #ffffff;
   --mdc-checkbox-unselected-focus-state-layer-color: #ffffff;
-  --mdc-checkbox-unselected-hover-state-layer-color: #b9b9b9;
+  --mdc-checkbox-unselected-hover-state-layer-color: #793434;
   --mdc-checkbox-unselected-pressed-state-layer-color: #ba8e73;
   --mdc-theme-text-primary-on-background: #ffffff;
   --mat-option-selected-state-label-text-color: #ba8e73;
 
-  // .mdc-checkbox {
-  //   border-color: #ba8e73;
-  //   background-color: #ba8e73;
-  // }
+  // retira o asterisco do required
+  .mat-mdc-form-field-required-marker {
+    display: none;
+  }
+
+  .outline-btn {
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    padding: 10px;
+  }
 
   // inputs
   --mdc-outlined-text-field-outline-color: #ffffff;
@@ -131,13 +138,13 @@ section {
 
   // button
   .mat-mdc-unelevated-button.mat-primary {
-    background-color: #ba8e73;
+    background-color: var(--foundation-primary, #ba8e73);
+    opacity: 1;
     color: var(--foundation-gray-scale-white, #fff);
   }
 
   .mat-mdc-unelevated-button.mat-primary:disabled {
     background-color: #979797;
     color: #171717;
-    /* Adicione quaisquer outros estilos desejados para o botão desativado aqui */
   }
 }

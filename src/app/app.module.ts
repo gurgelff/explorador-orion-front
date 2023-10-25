@@ -5,9 +5,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from './auth/auth.module';
+
 import { SpinnerComponent } from './theme/components/spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent],
@@ -15,7 +16,7 @@ import { LoadingInterceptor } from './loading.interceptor';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AuthModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [
