@@ -5,12 +5,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from './auth/auth.module';
+
 import { SpinnerComponent } from './theme/components/spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { DialogComponent } from './theme/components/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent, DialogComponent],
@@ -18,7 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AuthModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
     MatDialogModule

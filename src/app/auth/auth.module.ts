@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -12,9 +13,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
-  declarations: [LoginComponent, PasswordResetComponent],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
+    PasswordResetComponent,
     AuthRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,

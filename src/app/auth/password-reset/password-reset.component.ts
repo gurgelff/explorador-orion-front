@@ -1,41 +1,55 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ResetPasswordAPI } from 'src/app/core/api/reset-password.api';
-import { IResponseLogin } from 'src/app/core/models/response-login';
 import { IResponsePasswordReset } from 'src/app/core/models/response-password-reset';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { DialogComponent } from 'src/app/theme/components/dialog/dialog.component';
+import { NgIf } from '@angular/common';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.scss']
+  styleUrls: ['./password-reset.component.scss'],
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf,
+    RouterModule,
+  ],
 })
 export class PasswordResetComponent {
 
-  emailForm: FormGroup;
+  emailForm!: FormControl;
     
   public errorMessage?: string;
   
+
+  public email = new FormControl('', [Validators.required, Validators.email]);
+
   constructor(
     private resetPasswordAPI: ResetPasswordAPI,
     private router: Router,
     private loaderService: LoaderService,
-    private formBuilder: FormBuilder,
-    public dialog: MatDialog
-    ) {
-      this.emailForm = this.formBuilder.group({
-        email: new FormControl('', [
-          Validators.required,
-          Validators.email,
-          Validators.nullValidator,
-        ])
-      });
-    }
+    public dialog: MatDialog,
+    ) {}
 
-  public submit(): void {
+  public goBack(): void {
+    this.router.navigate(['/login']);
+  }
+
+  public onSubmit(): void {
     this.loaderService.setLoading(true);
     this.resetPasswordAPI.passwordReset(this.emailForm.value).then((response: IResponsePasswordReset) => {
       this.showSuccessDialog(response.message);
@@ -52,7 +66,7 @@ export class PasswordResetComponent {
       data: { response: response } 
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/login']);
     });
   }
