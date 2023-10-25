@@ -60,3 +60,4 @@ export class LoginComponent {
       });
   }
 }
+export class LoginComchangesponent {}
