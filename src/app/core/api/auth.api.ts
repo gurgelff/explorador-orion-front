@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthAPI extends BaseAPI<FormGroup, IResponseLogin> {
+export class AuthAPI extends BaseAPI {
 
   constructor(httpClient: HttpClient) {
     super(httpClient);
@@ -26,5 +26,4 @@ export class AuthAPI extends BaseAPI<FormGroup, IResponseLogin> {
   public login(loginForm: FormGroup): Promise<IResponseLogin> {
     return this.post(loginForm);
   }
-  
 }

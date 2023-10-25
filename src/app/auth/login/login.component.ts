@@ -45,9 +45,10 @@ export class LoginComponent {
    * - Exibe uma mensagem de erro em caso de falha.
    */
   public login(): void {
+    
     this.loaderService.setLoading(true);
     this.authAPI.login(this.loginForm.value).then((response: IResponseLogin) => {
-      this.storageService.setItem('token', response.data.token, this.loginForm.controls['isRememberEnabled']?.value ? EnumStorageType.LOCAL : EnumStorageType.SESSION)
+      this.storageService.setItem('token', response.data.token, this.loginForm.controls['isRememberEnabled'].value ? EnumStorageType.LOCAL : EnumStorageType.SESSION)
       this.router.navigate(['/pages']);
     }).catch((error) => {
       this.errorMessage = error;

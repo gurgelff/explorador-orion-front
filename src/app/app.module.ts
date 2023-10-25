@@ -8,15 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { SpinnerComponent } from './theme/components/spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
+import { DialogComponent } from './theme/components/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [AppComponent, SpinnerComponent],
+  declarations: [AppComponent, SpinnerComponent, DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule,
     HttpClientModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     {
