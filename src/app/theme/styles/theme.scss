@@ -108,15 +108,25 @@ section {
 
 :root {
   // checkbox
-  --mdc-checkbox-selected-checkmark-color: #979797;
-  --mdc-checkbox-unselected-hover-icon-color: #b9b9b9;
   --mdc-checkbox-unselected-icon-color: #ffffff;
   --mdc-checkbox-unselected-focus-icon-color: #ffffff;
   --mdc-checkbox-unselected-focus-state-layer-color: #ffffff;
-  --mdc-checkbox-unselected-hover-state-layer-color: #793434;
-  --mdc-checkbox-unselected-pressed-state-layer-color: #ba8e73;
   --mdc-theme-text-primary-on-background: #ffffff;
-  --mat-option-selected-state-label-text-color: #ba8e73;
+  --mdc-checkbox-selected-icon-color: #ba8e73;
+  --mdc-checkbox-selected-icon-color: #ba8e73;
+
+  .mdc-checkbox__background {
+    background-color: #ba8e73;
+  }
+
+  .mdc-checkbox
+    .mdc-checkbox__native-control:enabled
+    ~ .mdc-checkbox__background
+    .mdc-checkbox__checkmark {
+    color: #fff;
+    background-color: #ba8e73;
+    border-color: #ba8e73;
+  }
 
   // retira o asterisco do required
   .mat-mdc-form-field-required-marker {
