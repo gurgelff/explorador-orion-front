@@ -1,11 +1,15 @@
-import { Location, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { PasswordChangeMockService } from 'src/app/services/password-reset-mock.component';
-import { ButtonComponent } from './components/button/button.components';
+import { Router } from '@angular/router';
 
 /** @title Form field with error messages */
 @Component({
@@ -14,37 +18,24 @@ import { ButtonComponent } from './components/button/button.components';
   styleUrls: ['password-reset.component.scss'],
   standalone: true,
   imports: [
-      MatFormFieldModule, 
-      MatInputModule, 
-      FormsModule, 
-      ReactiveFormsModule, 
-      NgIf, 
-      ButtonComponent, 
-      RouterModule
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf,
+    RouterModule,
   ],
 })
-
 export class PasswordResetComponent {
-  constructor(private location: Location, private passwordChangeService: PasswordChangeMockService) {
-    this.location = location;
-  }
-
   public email = new FormControl('', [Validators.required, Validators.email]);
-  public submitBtnBool = !this.email.hasError('required') || false;
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  constructor(private router: Router) {}
+
+  public goBack(): void {
+    this.router.navigate(['/login']);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
-  submit(): void {
-    console.log('fdsuhf');
-    this.location.back();
+  public onSubmit(): void {
+    this.router.navigate(['/pages']);
   }
 }
