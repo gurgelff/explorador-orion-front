@@ -1,10 +1,9 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
-import { ButtonComponent } from '../password-reset/components/button/button.components';
+import { Router, RouterModule } from '@angular/router';
 import { hasEnoughLetters, numbersValidation, passwordMatchValidator, specialLetterValidation, upperCaseValidation } from './customValidator/passMatch-Validator';
 
 @Component({
@@ -14,43 +13,54 @@ import { hasEnoughLetters, numbersValidation, passwordMatchValidator, specialLet
   standalone: true,
   imports: [
     CommonModule,
-    MatFormFieldModule, 
-    MatInputModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    NgIf, 
-    ButtonComponent, 
+    MatInputModule,
+    ReactiveFormsModule,
+    NgIf,
+    MatIconModule,
     RouterModule
   ],
 })
 
 export class NewPasswordComponent {
+  formNewPassword: FormGroup;
+  hideFirstPass = false;
+  hideSecondPass = true;
 
-  control = new FormGroup(
-    {
-      password: new FormControl(
-        '',
-        [
-          Validators.required,
-          hasEnoughLetters(),
-          specialLetterValidation(),
-          upperCaseValidation(),
-          numbersValidation(),
-        ],
-      ),
-      passConfirmation: new FormControl(
-        '',
-        [
-          Validators.required,
-          passwordMatchValidator()
-        ]
-      )
-    },
-  );
+  constructor(private router: Router) {
+    this.router = router;
+    this.formNewPassword = new FormGroup(
+      {
+        password: new FormControl(
+          '',
+          [
+            hasEnoughLetters(),
+            specialLetterValidation(),
+            upperCaseValidation(),
+            numbersValidation(),
+          ],
+        ),
+        passConfirmation: new FormControl(
+          '',
+          [
+            passwordMatchValidator()
+          ]
+        )
+      },
+    );
+  }
   
   goBack() {
-    console.log(this.control)
-    console.log('go back');
+    console.log('1')
+    this.router.navigate(['/login']);
   }
 
+  getErrorMessage() {
+    const isEmpty = this.formNewPassword.get('password')?.value !== '';
+    const hasValidValue = this.formNewPassword.get('password')?.invalid;
+    if (isEmpty || !hasValidValue) {
+      return 'Preenchido de forma incorreta, tente novamente!';
+    }
+
+    return ''
+  }
 }
