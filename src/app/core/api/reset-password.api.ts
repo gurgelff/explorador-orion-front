@@ -12,46 +12,19 @@ export class ResetPasswordAPI extends BaseAPI<IRequestNewPass ,IResponsePassword
 
   constructor(httpClient: HttpClient) {
     super(httpClient);
-    this.apiUrl += '/forgot-password';
+    this.apiUrl += '/reset-password';
   }
 
   /**
-   * password-reset
+   * reset-password
    *
-   * Envia o email para o back
+   * Envia as senhas para o back
    * 
-   * ??
-   * 
-   * Nao era pra enviar {token, id, password e confirmPassword} ?
    */
   public passwordReset(formRequest: IRequestNewPass): Promise<IResponsePasswordReset> {
     return this.post(formRequest);
   }
 }
 
-
-
-// // Corriir formato da resposta
-// //corrigir endpoint
-// //criar interface para resposta
-// export class ResetPasswordAPI{
-
-//     public passwordReset(email: string ): Promise<IResponsePasswordReset> {
-//       return new Promise<IResponsePasswordReset>((resolve, reject) => {
-//         const response: IResponsePasswordReset = {
-//           success: false,
-//           message: ''
-//         };    
-//         if (email) {
-//           response.success = true;
-//           response.message = 'E-mail de recuperação enviado com sucesso! Siga as instruções enviadas em seu e-mail.';
-//           resolve(response);
-//         } else {
-//           reject(response);
-//         }
-//       });
-//     }
-    
-//   }
 
 

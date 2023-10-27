@@ -4,10 +4,9 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
 import { IRequestNewPass } from 'src/app/core/models/request-password.reset';
 import { IResponsePasswordReset } from 'src/app/core/models/response-password.reset';
-import { StorageService } from 'src/app/core/services/storage.service';
+import { ModalService } from 'src/app/core/services/modal.service';
 import { ResetPasswordAPI } from '../../core/api/reset-password.api';
 import { LoaderService } from '../../core/services/loader.service';
 import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation, upperCaseValidation } from './customValidator/passMatch-Validator';
@@ -35,17 +34,17 @@ export class NewPasswordComponent {
   private userId = '';
   
   constructor(
-    private dataRouter: ActivatedRoute, 
+    private activatedRouter: ActivatedRoute, 
     private formBuilder: FormBuilder, 
-    private navRouter: Router,
+    private router: Router,
     private loaderService: LoaderService,
     private resetPassApi: ResetPasswordAPI,
-    private storageService: StorageService,
+    private modalService: ModalService
   ) {
-    this.navRouter = navRouter;
-    this.dataRouter = dataRouter;
-    this.userId = this.dataRouter.snapshot.params['id'];
-    this.resetToken = this.dataRouter.snapshot.params['reset-token'];
+    this.router = router;
+    this.activatedRouter = activatedRouter;
+    this.userId = this.activatedRouter.snapshot.params['id'];
+    this.resetToken = this.activatedRouter.snapshot.params['reset-token'];
 
     this.formNewPassword = this.formBuilder.group({
       password: new FormControl(
@@ -64,7 +63,7 @@ export class NewPasswordComponent {
     });
   }
 
-  passwordMatchValidator(formNewPassword: FormGroup): void {
+  private passwordMatchValidator(formNewPassword: FormGroup): void {
     const password: string = formNewPassword?.get('password')?.value;
     const passConfirmation: string = formNewPassword?.get('passConfirmation')?.value;
 
@@ -75,11 +74,11 @@ export class NewPasswordComponent {
     }
   }
 
-  goBack(): void{
-    this.navRouter.navigate(['/login']);
+  protected goBack(): void{
+    this.router.navigate(['/login']);
   }
 
-  createRequestJson(): IRequestNewPass {
+  private createRequestJson(): IRequestNewPass {
     const password: string = this.formNewPassword?.get('password')?.value.replace(/\s/g, "");
     const passConfirmation: string = this.formNewPassword?.get('passConfirmation')?.value.replace(/\s/g, "");
     const userData: IRequestNewPass = {
@@ -91,17 +90,13 @@ export class NewPasswordComponent {
     return userData;
   }
 
-  newPassBtnRequest(): void{
+  protected newPassBtnRequest(): void{
     const userData = this.createRequestJson();
-    
-    // criar conexao com o backend    
     this.loaderService.setLoading(true);
     this.resetPassApi
       .passwordReset(userData)
         .then((response: IResponsePasswordReset) => {
-        const storageType = EnumStorageType.LOCAL;
-        this.storageService.setItem('token', response.message , storageType);
-        this.navRouter.navigate(['/pages']);
+          this.modalService.showSuccessDialog(response.data.message)
       })
       .catch((error) => {
         this.errorMessage = error;

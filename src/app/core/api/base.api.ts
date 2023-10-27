@@ -14,10 +14,9 @@ export class BaseAPI<TD, TR> {
             resolve(response);
           },
           (error) => {
-            reject(`${error.error.data.message || 'Erro desconhecido'}`);
+            reject(`${error.message || 'Erro desconhecido'}`);
           }
         );
     });
   }
-
 }

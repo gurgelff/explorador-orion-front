@@ -1,5 +1,7 @@
 export interface IResponsePasswordReset {
-    "success": boolean,
-    "message": string
+    status: boolean,
+    data: {
+        message: string;
+    }
 }
   
