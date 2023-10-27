@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
@@ -13,6 +13,7 @@ import { StorageService } from './../../core/services/storage.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
+
 export class LoginComponent {
   public hide = true;
   public errorMessage?: string;
@@ -23,7 +24,7 @@ export class LoginComponent {
     private storageService: StorageService,
     private router: Router,
     private loaderService: LoaderService,
-    private emailService: EmailService
+    @Inject(EmailService) private emailService: EmailService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),

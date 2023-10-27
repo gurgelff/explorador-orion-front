@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IResponsePasswordReset } from 'src/app/core/models/response-password.reset';
+import { IResponsePasswordForgot } from 'src/app/core/models/response-password-forgot';
 
 @Component({
   selector: 'app-dialog',
@@ -10,7 +10,7 @@ import { IResponsePasswordReset } from 'src/app/core/models/response-password.re
 export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IResponsePasswordReset
+    @Inject(MAT_DIALOG_DATA) public data: IResponsePasswordForgot
   ) {}
 
   /**

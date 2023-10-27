@@ -5,9 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IRequestNewPass } from 'src/app/core/models/request-password.reset';
-import { IResponsePasswordReset } from 'src/app/core/models/response-password.reset';
+import { IResponsePasswordForgot } from 'src/app/core/models/response-password-forgot';
 import { ModalService } from 'src/app/core/services/modal.service';
-import { ResetPasswordAPI } from '../../core/api/reset-password.api';
+import { ForgotPasswordAPI } from '../../core/api/forgot-password.api';
 import { LoaderService } from '../../core/services/loader.service';
 import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation, upperCaseValidation } from './customValidator/passMatch-Validator';
 
@@ -38,7 +38,7 @@ export class NewPasswordComponent {
     private formBuilder: FormBuilder, 
     private router: Router,
     private loaderService: LoaderService,
-    private resetPassApi: ResetPasswordAPI,
+    private resetPassApi: ForgotPasswordAPI,
     private modalService: ModalService
   ) {
     this.router = router;
@@ -94,8 +94,8 @@ export class NewPasswordComponent {
     const userData = this.createRequestJson();
     this.loaderService.setLoading(true);
     this.resetPassApi
-      .passwordReset(userData)
-        .then((response: IResponsePasswordReset) => {
+      .newPassRequest(userData)
+        .then((response: IResponsePasswordForgot) => {
           this.modalService.showSuccessDialog(response.data.message)
       })
       .catch((error) => {

@@ -27,6 +27,11 @@ export class ModalService implements OnDestroy {
     });
   }
 
+  /**
+   * Implementação do método `ngOnDestroy` para o serviço ModalService.
+   * Chamado quando o serviço está prestes a ser destruído.
+   * Realiza a desinscrição do dialogListener$.
+   */
   public ngOnDestroy(): void {
     this.dialogListener$.unsubscribe();
   }
