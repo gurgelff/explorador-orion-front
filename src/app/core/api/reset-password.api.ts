@@ -13,9 +13,10 @@ export class ResetPasswordAPI extends BaseAPI {
   }
 
   /**
-   * password-reset
+   * Solicita uma redefinição de senha para o endereço de e-mail fornecido.
    *
-   * Envia o email para o back
+   * @param emailForm O endereço de e-mail para o qual a redefinição de senha será solicitada.
+   * @returns Uma Promise com a resposta da solicitação de redefinição de senha.
    */
   public passwordReset(emailForm: string): Promise<IResponsePasswordReset> {
     return this.post(emailForm);
