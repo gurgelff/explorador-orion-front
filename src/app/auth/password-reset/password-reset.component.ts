@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ResetPasswordAPI } from 'src/app/core/api/reset-password.api';
-import { IResponsePasswordReset } from 'src/app/core/models/response-password-reset';
+import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
+import { IResponsePasswordForgot } from 'src/app/core/models/response-password-forgot';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { NgIf } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +31,7 @@ export class PasswordResetComponent implements OnInit {
   public emailForm: FormGroup;
   public email!: string;
   constructor(
-    private resetPasswordAPI: ResetPasswordAPI,
+    private forgotPasswordAPI: ForgotPasswordAPI,
     private router: Router,
     private loaderService: LoaderService,
     private modalService: ModalService,
@@ -69,10 +69,10 @@ export class PasswordResetComponent implements OnInit {
    */
   public onSubmit(): void {
     this.loaderService.setLoading(true);
-    this.resetPasswordAPI
+    this.forgotPasswordAPI
       .passwordReset(this.emailForm.value)
-      .then((response: IResponsePasswordReset) => {
-        this.modalService.showSuccessDialog(response.message);
+      .then((response: IResponsePasswordForgot) => {
+        this.modalService.showSuccessDialog(response.data.message);
       })
       .catch((error) => {
         this.errorMessage = error;
