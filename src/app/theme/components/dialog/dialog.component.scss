@@ -1,19 +1,18 @@
 @import "../../styles/theme.scss";
 
-.container-dialog{
+.container-dialog {
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 360px;
-  // height: 321px;
   padding: 46px 52px;
 }
 
 .image-container {
   display: flex;
   justify-content: space-between;
-  width: 100%; 
+  width: 100%;
 }
 
 .check-success {
@@ -33,7 +32,7 @@
   align-items: center;
 }
 
-p{
+p {
   color: var(--foundation-gray-scale-black, #020204);
   text-align: center;
   font-family: Roboto;
@@ -45,25 +44,25 @@ p{
   margin: 0;
 }
 
-mat-stroked-button{
+mat-stroked-button {
   background-color: $white;
   color: $black;
   border: solid $black 1px;
   padding: 10px 8px;
 }
 
-::ng-deep .mat-mdc-button-persistent-ripple{
+::ng-deep .mat-mdc-button-persistent-ripple {
   border: 1px solid black;
 }
 
-::ng-deep.mdc-button__label{
+::ng-deep.mdc-button__label {
   color: $black;
   text-align: center;
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
-  line-height: 16px; /* 114.286% */
+  line-height: 16px;
   letter-spacing: 1.25px;
   text-transform: uppercase;
   margin: 20px 72px;

@@ -1,27 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/theme/components/dialog/dialog.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ModalService {
+export class ModalService implements OnDestroy {
+  private dialogListener$: Subscription = Subscription.EMPTY;
 
   constructor(private dialog: MatDialog, private router: Router) {}
 
   /**
- * Exibe um modal de sucesso com a resposta fornecida e redireciona para a página de login após o fechamento do modal.
- *
- * @param response A mensagem de resposta a ser exibida no modal de sucesso.
- */
-  showSuccessDialog(response: string): void {
+   * Exibe um modal de sucesso com a resposta fornecida e redireciona para a página de login após o fechamento do modal.
+   *
+   * @param response A mensagem de resposta a ser exibida no modal de sucesso.
+   */
+  public showSuccessDialog(response: string): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { response: response } 
+      data: { response: response },
     });
 
-    dialogRef.afterClosed().subscribe(() => {
+    this.dialogListener$ = dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/login']);
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.dialogListener$.unsubscribe();
   }
 }

@@ -50,24 +50,24 @@ export class LoginComponent {
         const storageType = this.loginForm.get('isRememberEnabled')?.value
           ? EnumStorageType.LOCAL
           : EnumStorageType.SESSION;
-          this.storageService.setItem('token', response.data.token, storageType);
-          this.router.navigate(['/pages']);
-        })
-        .catch((error) => {
-          this.errorMessage = error;
-        })
-        .finally(() => {
-          this.loaderService.setLoading(false);
-        });
-      }
-  
+        this.storageService.setItem('token', response.data.token, storageType);
+        this.router.navigate(['/pages']);
+      })
+      .catch((error) => {
+        this.errorMessage = error;
+      })
+      .finally(() => {
+        this.loaderService.setLoading(false);
+      });
+  }
+
   /**
- * Método chamado quando o usuário clica em "Esqueceu a senha?".
- * - Obtém o valor do campo de e-mail do formulário.
- * - Armazena o valor do e-mail no serviço EmailService para uso posterior.
- * - Navega para a rota '/auth/password-reset' para permitir a redefinição da senha.
- */    
-  forgotPassword() {
+   * Método chamado quando o usuário clica em "Esqueceu a senha?".
+   * - Obtém o valor do campo de e-mail do formulário.
+   * - Armazena o valor do e-mail no serviço EmailService para uso posterior.
+   * - Navega para a rota '/auth/password-reset' para permitir a redefinição da senha.
+   */
+  public forgotPassword(): void {
     this.emailService.setEmail(this.loginForm.get('email')?.value);
     this.router.navigate(['/auth/password-reset']);
   }

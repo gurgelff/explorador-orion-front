@@ -1,14 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { BaseAPI } from './base.api';
 import { HttpClient } from '@angular/common/http';
 import { IResponsePasswordReset } from '../models/response-password-reset';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-export class ResetPasswordAPI extends BaseAPI{
-
+export class ResetPasswordAPI extends BaseAPI {
   constructor(httpClient: HttpClient) {
     super(httpClient);
     this.apiUrl += '/forgot-password';
@@ -23,6 +21,3 @@ export class ResetPasswordAPI extends BaseAPI{
     return this.post(emailForm);
   }
 }
-
-
-
