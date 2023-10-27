@@ -7,6 +7,7 @@ import { AuthAPI } from '../../core/api/auth.api';
 import { LoaderService } from '../../core/services/loader.service';
 import { IResponseLogin } from 'src/app/core/models/response-login';
 import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
+import { EmailService } from 'src/app/core/services/email.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private authAPI: AuthAPI,
     private storageService: StorageService,
     private router: Router,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private emailService: EmailService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -41,7 +43,6 @@ export class LoginComponent {
    * - Exibe uma mensagem de erro em caso de falha.
    */
   public login(): void {
-    
     this.loaderService.setLoading(true);
     this.authAPI
       .login(this.loginForm.value)
@@ -49,15 +50,19 @@ export class LoginComponent {
         const storageType = this.loginForm.get('isRememberEnabled')?.value
           ? EnumStorageType.LOCAL
           : EnumStorageType.SESSION;
-
-        this.storageService.setItem('token', response.data.token, storageType);
-        this.router.navigate(['/pages']);
-      })
-      .catch((error) => {
-        this.errorMessage = error;
-      })
-      .finally(() => {
-        this.loaderService.setLoading(false);
-      });
+          this.storageService.setItem('token', response.data.token, storageType);
+          this.router.navigate(['/pages']);
+        })
+        .catch((error) => {
+          this.errorMessage = error;
+        })
+        .finally(() => {
+          this.loaderService.setLoading(false);
+        });
+      }
+      
+  forgotPassword() {
+    this.emailService.setEmail(this.loginForm.get('email')?.value);
+    this.router.navigate(['/auth/password-reset']);
   }
 }

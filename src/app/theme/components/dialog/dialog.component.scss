@@ -1,34 +1,29 @@
-@import '../../styles/colors.scss';
+@import "../../styles/theme.scss";
 
-.container {
-    display: flex;
-    flex-direction: column;
-    width: 370px;
-    height: 370px;
-    margin: 0 auto;
+.container-dialog{
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  // height: 321px;
+  padding: 46px 52px;
 }
-
-.custom-dialog-container{
-    display: flex;
-    flex-direction: column;
-      padding: 52px 46px;
-      align-items: center;
-      justify-content: center;  
-  }
 
 .image-container {
   display: flex;
-  justify-content: flex-end;
-  // align-items: last baseline; 
+  justify-content: space-between;
+  width: 100%; 
 }
 
 .check-success {
   width: 69px;
   height: 69px;
-  flex-shrink: 0;
+  padding-left: 35px;
 }
 
 .icon-close {
+  background-image: url(../../../../assets/images/icon-close.png);
   display: flex;
   width: 31px;
   height: 32px;
@@ -38,37 +33,38 @@
   align-items: center;
 }
 
-// ::ng-deep .mat-mdc-button .mat-mdc-button-persistent-ripple {
-//     background-color: $white;
-//     color: $black; /* Cor do texto */
-//     border: solid $black 1px; /* Sem borda */
-//     padding: 10px 20px; /* Preenchimento (ajuste conforme necessário) */
-//     border-radius: 15px; /* Borda arredondada (ajuste conforme necessário) */
-//     display: flex;
-//     width: 255px;
-//     height: 56px;
-//     padding: 10px 8px;
-//     justify-content: center;
-//     align-items: center;
-//     flex-shrink: 0;
-//   }
+p{
+  color: var(--foundation-gray-scale-black, #020204);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: none;
+  margin: 0;
+}
 
-  h1{
-    color: var(--foundation-gray-scale-black, #020204);
-    font-family: Roboto;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.12px;
-  }
+mat-stroked-button{
+  background-color: $white;
+  color: $black;
+  border: solid $black 1px;
+  padding: 10px 8px;
+}
 
-  p{
-    color: var(--foundation-gray-scale-black, #020204);
-    text-align: center;
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+::ng-deep .mat-mdc-button-persistent-ripple{
+  border: 1px solid black;
+}
+
+::ng-deep.mdc-button__label{
+  color: $black;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px; /* 114.286% */
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  margin: 20px 72px;
+}

@@ -14,10 +14,9 @@ export class BaseAPI {
             resolve(response);
           },
           (error) => {
-            reject(`${error.error.data.message || 'Erro desconhecido'}`);
+            reject(`${error.error.data?.message || 'Erro desconhecido'}`);
           }
         );
     });
   }
-
 }
