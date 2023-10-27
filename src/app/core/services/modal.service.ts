@@ -7,7 +7,6 @@ import { DialogComponent } from '../../theme/components/dialog/dialog.component'
 @Injectable({
   providedIn: 'root',
 })
-
 export class ModalService implements OnDestroy {
   private dialogListener$: Subscription = Subscription.EMPTY;
 

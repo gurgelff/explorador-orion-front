@@ -43,7 +43,7 @@
           <mat-checkbox formControlName="isRememberEnabled"
             >Lembrar de mim</mat-checkbox
           >
-          <a [routerLink]="'/auth/password-reset'">Esqueceu a senha?</a>
+          <a (click)="forgotPassword()" (keydown)="forgotPassword()" tabindex="0">Esqueceu a senha?</a>
         </section>
         <section class="button-section">
           <button

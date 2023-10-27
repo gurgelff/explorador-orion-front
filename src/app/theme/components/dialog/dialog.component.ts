@@ -7,7 +7,6 @@ import { IResponsePasswordReset } from 'src/app/core/models/response-password.re
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
 })
-
 export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,

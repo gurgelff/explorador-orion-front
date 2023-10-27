@@ -4,14 +4,10 @@ import { Observable } from 'rxjs';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
-
-  constructor(
-    private storageService: StorageService,
-    private router: Router
-    ) { }
+  constructor(private storageService: StorageService, private router: Router) {}
 
   /*
   Verifica se o usuário está autenticado antes de permitir o acesso a uma rota.

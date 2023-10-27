@@ -8,7 +8,7 @@ import { BaseAPI } from './base.api';
   providedIn: 'root'
 })
 
-export class ResetPasswordAPI extends BaseAPI<IRequestNewPass ,IResponsePasswordReset>{
+export class ResetPasswordAPI extends BaseAPI{
 
   constructor(httpClient: HttpClient) {
     super(httpClient);
