@@ -6,6 +6,12 @@ export class BaseAPI {
 
   constructor(protected httpClient: HttpClient) { }
 
+  /**
+ * Realiza uma requisição HTTP POST para a URL da API.
+ *
+ * @param data Os dados a serem enviados na requisição.
+ * @returns Uma Promise com a resposta da API no resolve se a requisição for bem-sucedida, ou uma mensagem de erro no reject em caso de falha.
+ */
   protected post<TD, TR>(data: TD): Promise<TR> {
     return new Promise<TR>((resolve, reject) => {
       this.httpClient.post<TR>(this.apiUrl, data)
