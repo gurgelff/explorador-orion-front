@@ -10,7 +10,8 @@ const routes: Routes = [
     component: LoginComponent,
   },
   { 
-    path: 'new-password', component: NewPasswordComponent,
+    path: 'reset-password/:id/:reset-token', 
+    component: NewPasswordComponent,
   },
   {
     path: 'password-reset',

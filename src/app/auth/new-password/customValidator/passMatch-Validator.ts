@@ -1,22 +1,20 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-export function passwordMatchValidator(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-    const formGroup = control.parent;
+export function noSpaces(): ValidatorFn {
+  return (newPassFormControl: AbstractControl): { [key: string]: boolean} | null => {
+    const formGroup = newPassFormControl.parent;    
     const password = formGroup?.get('password');
-    const confirmPassword = formGroup?.get('passConfirmation');
 
-    if (password && confirmPassword && password.value !== confirmPassword.value) {
-      return { passwordMismatch: false };
+    if (password?.value.match(/\s/)) {
+      return { noSpacesError: true };
     }
-
     return null;
-  };
+  }
 }
 
 export function upperCaseValidation(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-    const formGroup = control.parent;
+  return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
+    const formGroup = newPassFormControl.parent;
     const password = formGroup?.get('password');
 
     if (!password?.value.match(/[A-Z]/)) {
@@ -27,8 +25,8 @@ export function upperCaseValidation(): ValidatorFn {
 }
 
 export function specialLetterValidation(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-    const formGroup = control.parent;
+  return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
+    const formGroup = newPassFormControl.parent;
     const password = formGroup?.get('password');
 
     if (!password?.value.match(/[^A-Za-z0-9]/g)) {
@@ -39,8 +37,8 @@ export function specialLetterValidation(): ValidatorFn {
 }
 
 export function numbersValidation(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-    const formGroup = control.parent;
+  return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
+    const formGroup = newPassFormControl.parent;
     const password = formGroup?.get('password');
 
     if (!password?.value.match(/[0-9]/g)) {
@@ -51,12 +49,11 @@ export function numbersValidation(): ValidatorFn {
 }
 
 export function hasEnoughLetters(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-    const formGroup = control.parent;
+  return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
+    const formGroup = newPassFormControl.parent;
     const password = formGroup?.get('password');
 
     if (!(password?.value.length >= 8)) {
-      console.log(password?.value.length)
       return { passwordSizeError: true };
     }
     return null;
