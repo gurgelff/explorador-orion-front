@@ -7,6 +7,7 @@ import { AuthAPI } from '../../core/api/auth.api';
 import { LoaderService } from '../../core/services/loader.service';
 import { IResponseLogin } from 'src/app/core/models/response-login';
 import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
+import { EmailService } from 'src/app/core/services/email.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private authAPI: AuthAPI,
     private storageService: StorageService,
     private router: Router,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private emailService: EmailService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -48,7 +50,6 @@ export class LoginComponent {
         const storageType = this.loginForm.get('isRememberEnabled')?.value
           ? EnumStorageType.LOCAL
           : EnumStorageType.SESSION;
-
         this.storageService.setItem('token', response.data.token, storageType);
         this.router.navigate(['/pages']);
       })
@@ -58,5 +59,16 @@ export class LoginComponent {
       .finally(() => {
         this.loaderService.setLoading(false);
       });
+  }
+
+  /**
+   * Método chamado quando o usuário clica em "Esqueceu a senha?".
+   * - Obtém o valor do campo de e-mail do formulário.
+   * - Armazena o valor do e-mail no serviço EmailService para uso posterior.
+   * - Navega para a rota '/auth/password-reset' para permitir a redefinição da senha.
+   */
+  public forgotPassword(): void {
+    this.emailService.setEmail(this.loginForm.get('email')?.value);
+    this.router.navigate(['/auth/password-reset']);
   }
 }

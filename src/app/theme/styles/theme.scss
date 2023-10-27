@@ -112,6 +112,7 @@ section {
   --mdc-checkbox-unselected-focus-icon-color: #ffffff;
   --mdc-checkbox-unselected-focus-state-layer-color: #ffffff;
   --mdc-theme-text-primary-on-background: #ffffff;
+
   --mdc-checkbox-selected-icon-color: #ba8e73;
   --mdc-checkbox-selected-icon-color: #ba8e73;
 
@@ -126,11 +127,42 @@ section {
     color: #fff;
     background-color: #ba8e73;
     border-color: #ba8e73;
+
+  --mat-option-selected-state-label-text-color: #ba8e73;
+  
+  .mat-mdc-dialog-actions, .mdc-dialog__actions{
+    padding: 0;
+  }
+  
+  mat-dialog-content > p {
+    width: 100%;
   }
 
-  // retira o asterisco do required
-  .mat-mdc-form-field-required-marker {
-    display: none;
+  .mdc-dialogtitle + .mdc-dialogcontent {
+    padding: 0px;
+  }
+
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 0;
+
+  }
+
+  .mat-mdc-dialog-container .mdc-dialog__container  {
+    border-radius: 0;
+  }
+  .mdc-dialog__content {
+    overflow: none;
+  }
+
+  .mat-mdc-dialog-title, .mdc-dialog__title{
+      padding-bottom: 16px 0;
+    }
+ 
+  .mat-mdc-outlined-button:not(:disabled) {
+      border: 1px solid $black;
+  }
+  .cdk-overlay-pane{
+    border-radius: 0px;
   }
 
   .outline-btn {
