@@ -60,7 +60,13 @@ export class LoginComponent {
           this.loaderService.setLoading(false);
         });
       }
-      
+  
+  /**
+ * Método chamado quando o usuário clica em "Esqueceu a senha?".
+ * - Obtém o valor do campo de e-mail do formulário.
+ * - Armazena o valor do e-mail no serviço EmailService para uso posterior.
+ * - Navega para a rota '/auth/password-reset' para permitir a redefinição da senha.
+ */    
   forgotPassword() {
     this.emailService.setEmail(this.loginForm.get('email')?.value);
     this.router.navigate(['/auth/password-reset']);
