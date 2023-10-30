@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { LoadingComponent } from './loading/loading.component';
+import { MarsWeatherPanelComponent } from './mars-weather-panel/mars-weather-panel.component';
+import { LogoutComponent } from '../theme/components/logout/logout.component';
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    MarsWeatherPanelComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
   ]
 })
 export class PagesModule { }
