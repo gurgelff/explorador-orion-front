@@ -116,9 +116,9 @@ section {
   --mdc-checkbox-selected-icon-color: #ba8e73;
   --mdc-checkbox-selected-icon-color: #ba8e73;
 
-  .mdc-checkbox__background {
-    background-color: #ba8e73;
-  }
+  // .mdc-checkbox__background {
+  //   background-color: #ba8e73;
+  // }
 
   .mdc-checkbox
     .mdc-checkbox__native-control:enabled
@@ -127,13 +127,16 @@ section {
     color: #fff;
     background-color: #ba8e73;
     border-color: #ba8e73;
+  }
 
   --mat-option-selected-state-label-text-color: #ba8e73;
-  
-  .mat-mdc-dialog-actions, .mdc-dialog__actions{
+
+  //Estiliza o modal
+  .mat-mdc-dialog-actions,
+  .mdc-dialog__actions {
     padding: 0;
   }
-  
+
   mat-dialog-content > p {
     width: 100%;
   }
@@ -144,24 +147,24 @@ section {
 
   .mat-mdc-dialog-container .mdc-dialog__surface {
     border-radius: 0;
-
   }
 
-  .mat-mdc-dialog-container .mdc-dialog__container  {
+  .mat-mdc-dialog-container .mdc-dialog__container {
     border-radius: 0;
   }
   .mdc-dialog__content {
     overflow: none;
   }
 
-  .mat-mdc-dialog-title, .mdc-dialog__title{
-      padding-bottom: 16px 0;
-    }
- 
-  .mat-mdc-outlined-button:not(:disabled) {
-      border: 1px solid $black;
+  .mat-mdc-dialog-title,
+  .mdc-dialog__title {
+    padding-bottom: 16px 0;
   }
-  .cdk-overlay-pane{
+
+  .mat-mdc-outlined-button:not(:disabled) {
+    border: 1px solid $black;
+  }
+  .cdk-overlay-pane {
     border-radius: 0px;
   }
 
@@ -173,10 +176,17 @@ section {
   }
 
   // inputs
+  --mdc-outlined-text-field-input-text-color: #ffffff;
+  --mat-mdc-text-field-wrapper-color: #ffffff;
   --mdc-outlined-text-field-outline-color: #ffffff;
   --mdc-outlined-text-field-hover-outline-color: #b9b9b9;
   --mdc-outlined-text-field-label-text-color: #ffffff;
   --mdc-outlined-text-field-input-text-color: #ffffff;
+
+  // retira o asterisco do required
+  .mat-mdc-form-field-required-marker {
+    display: none;
+  }
 
   // button
   .mat-mdc-unelevated-button.mat-primary {
