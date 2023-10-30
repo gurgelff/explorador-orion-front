@@ -25,6 +25,7 @@
           />
 
           <button
+            type="button"
             mat-icon-button
             matSuffix
             (click)="hide = !hide"
@@ -43,7 +44,12 @@
           <mat-checkbox formControlName="isRememberEnabled"
             >Lembrar de mim</mat-checkbox
           >
-          <a (click)="forgotPassword()" (keydown)="forgotPassword()" tabindex="0">Esqueceu a senha?</a>
+          <a
+            (click)="forgotPassword()"
+            (keydown)="forgotPassword()"
+            tabindex="0"
+            >Esqueceu a senha?</a
+          >
         </section>
         <section class="button-section">
           <button
