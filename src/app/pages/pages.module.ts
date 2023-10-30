@@ -5,12 +5,14 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { LoadingComponent } from './loading/loading.component';
 import { MarsWeatherPanelComponent } from './mars-weather-panel/mars-weather-panel.component';
 import { LogoutComponent } from '../theme/components/logout/logout.component';
+import { PageTitleComponent } from '../theme/components/page-title/page-title.component';
 
 @NgModule({
   declarations: [
     LoadingComponent,
     MarsWeatherPanelComponent,
-    LogoutComponent
+    LogoutComponent,
+    PageTitleComponent
   ],
   imports: [
     CommonModule,
