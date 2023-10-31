@@ -1,0 +1,91 @@
+// redefine tag p para não herdar estilos do mat-card
+::ng-deep.mat-typography p {
+  margin: 0;
+  padding: 0;
+}
+
+.card-principal {
+  width: 600px;
+  display: flex;
+  border-radius: 26px;
+  background: rgba(62, 51, 51, 0.25);
+  padding: 45px 80px 41px 32px;
+}
+
+.display-day,
+.max-temperature {
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.display-date,
+.min-temperature {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.calendar-section {
+  width: 165px;
+  height: 127px;
+  margin-right: 40px;
+
+  .calendar-icon-img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .display-day {
+    color: var(--foundation-gray-scale-white, #fff);
+    font-family: Inter;
+    text-transform: uppercase;
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  .display-date {
+    color: var(--foundation-gray-scale-white, #fff);
+    font-family: Inter;
+    font-style: normal;
+    line-height: normal;
+  }
+}
+
+.temperature-section {
+  height: 127px;
+  display: flex;
+  flex-direction: column;
+
+  .thermometer-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 6px;
+  }
+
+  .max-temperature {
+    color: #ffd2b5;
+    font-family: Inter;
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  .min-temperature {
+    color: #ffd2b5;
+    font-family: Inter;
+    font-style: normal;
+    line-height: normal;
+  }
+}
+
+.wrapper-max-temp,
+.wrapper-min-temp {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.wrapper-max-temp img,
+.wrapper-min-temp img {
+  margin-left: 10px;
+}
