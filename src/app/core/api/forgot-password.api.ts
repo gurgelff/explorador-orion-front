@@ -8,12 +8,12 @@ import { StorageService } from '../services/storage.service';
   providedIn: 'root',
 })
 export class ForgotPasswordAPI extends BaseAPI {
-  public override storageService: StorageService;
-
-  constructor(httpClient: HttpClient, storageService: StorageService) {
+  constructor(
+    protected override httpClient: HttpClient,
+    protected override storageService: StorageService
+  ) {
     super(httpClient, storageService);
     this.apiUrl += '/forgot-password';
-    this.storageService = storageService;
   }
 
   /**
