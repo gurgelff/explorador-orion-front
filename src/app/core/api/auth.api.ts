@@ -1,4 +1,4 @@
-import { IResponseLogin } from './../models/response-login';
+import { IResponseLogin } from '../models/IResponse-login';
 import { Injectable } from '@angular/core';
 import { BaseAPI } from './base.api';
 import { HttpClient } from '@angular/common/http';

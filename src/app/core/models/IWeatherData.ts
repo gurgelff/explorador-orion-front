@@ -1,4 +1,4 @@
-import { IWeatherCard } from './weatherCard';
+import { IWeatherCard } from './IWeatherCard';
 
 export interface IWeatherData {
   weatherCards: IWeatherCard[];

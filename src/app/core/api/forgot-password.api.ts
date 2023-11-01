@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseAPI } from './base.api';
 import { HttpClient } from '@angular/common/http';
-import { IResponsePasswordForgot } from '../models/response-password-forgot';
+import { IResponsePasswordForgot } from '../models/IResponse-password-forgot';
 
 @Injectable({
   providedIn: 'root',

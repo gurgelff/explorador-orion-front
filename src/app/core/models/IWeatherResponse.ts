@@ -1,4 +1,4 @@
-import { IWeatherData } from './weatherData';
+import { IWeatherData } from './IWeatherData';
 
 export interface IWeatherResponse {
   status: boolean;
