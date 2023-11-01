@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
+import { ForgotPasswordAPI } from 'src/app/core/api/IResponsePasswordForgot';
 import { IResponsePasswordForgot } from 'src/app/core/models/IResponse-password-forgot';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { NgIf } from '@angular/common';
