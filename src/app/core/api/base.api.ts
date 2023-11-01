@@ -4,11 +4,11 @@ import { StorageService } from 'src/app/core/services/storage.service';
 
 export class BaseAPI {
   protected apiUrl: string = environment.apiUrl;
-  protected storageService: StorageService;
 
-  constructor(protected httpClient: HttpClient) {
-    this.storageService = new StorageService();
-  }
+  constructor(
+    protected httpClient: HttpClient,
+    protected storageService: StorageService
+  ) {}
 
   public setHeaders(): HttpHeaders['headers'] {
     const bearerToken = this.storageService.getItem('token');
