@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IResponsePasswordForgot } from 'src/app/core/models/response-password-forgot';
+import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
 
 @Component({
   selector: 'app-dialog',
