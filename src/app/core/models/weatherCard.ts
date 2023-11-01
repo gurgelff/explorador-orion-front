@@ -1,4 +1,4 @@
-export interface WeatherCard {
+export interface IWeatherCard {
   temperature: {
     celsius: {
       min: number;

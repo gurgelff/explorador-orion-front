@@ -1,6 +1,6 @@
-import { WeatherData } from './weatherData';
+import { IWeatherData } from './weatherData';
 
-export interface WeatherResponse {
+export interface IWeatherResponse {
   status: boolean;
-  data: WeatherData;
+  data: IWeatherData;
 }

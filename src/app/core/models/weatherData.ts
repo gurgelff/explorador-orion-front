@@ -1,5 +1,5 @@
-import { WeatherCard } from './weatherCard';
+import { IWeatherCard } from './weatherCard';
 
-export interface WeatherData {
-  weatherCards: WeatherCard[];
+export interface IWeatherData {
+  weatherCards: IWeatherCard[];
 }
