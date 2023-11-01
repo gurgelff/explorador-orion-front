@@ -6,17 +6,19 @@ import { LoadingComponent } from './loading/loading.component';
 import { MarsWeatherPanelComponent } from './mars-weather-panel/mars-weather-panel.component';
 import { LogoutComponent } from '../theme/components/logout/logout.component';
 import { PageTitleComponent } from '../theme/components/page-title/page-title.component';
+import { CarouselComponent } from '../theme/components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
     LoadingComponent,
     MarsWeatherPanelComponent,
     LogoutComponent,
-    PageTitleComponent
+    PageTitleComponent,
+    CarouselComponent,
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
-  ]
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}
