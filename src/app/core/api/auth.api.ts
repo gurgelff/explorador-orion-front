@@ -11,9 +11,9 @@ import { StorageService } from '../services/storage.service';
 export class AuthAPI extends BaseAPI {
   constructor(
     protected override httpClient: HttpClient,
-    protected StorageService: StorageService
+    protected override storageService: StorageService
   ) {
-    super(httpClient, StorageService);
+    super(httpClient, storageService);
     this.apiUrl += '/login';
   }
 
