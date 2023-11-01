@@ -55,10 +55,6 @@ export class StorageService {
       return { value: sessionValue, storageType: EnumStorageType.SESSION };
     }
 
-    if (localValue !== null) {
-      return { value: localValue, storageType: EnumStorageType.LOCAL };
-    }
-
-    return { value: null };
+    return { value: localValue, storageType: EnumStorageType.LOCAL };
   }
 }
