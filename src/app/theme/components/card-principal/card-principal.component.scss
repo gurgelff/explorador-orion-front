@@ -1,5 +1,5 @@
 // redefine tag p para não herdar estilos do mat-card
-::ng-deep.mat-typography p {
+::ng-deep.mat-typography .paragraph-customization {
   margin: 0;
   padding: 0;
 }

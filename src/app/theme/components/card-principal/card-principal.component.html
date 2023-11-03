@@ -5,8 +5,12 @@
       alt="icone de um calendário"
       class="calendar-icon-img"
     />
-    <p class="display-day">Sol 259</p>
-    <p class="display-date">23 Setembro de 2023</p>
+    <p class="display-day paragraph-customization">
+      Sol {{ IWeatherCard.solDate }}
+    </p>
+    <p class="display-date paragraph-customization">
+      {{ formattedTerrestrialDate }}
+    </p>
   </div>
   <div class="temperature-section">
     <img
@@ -15,14 +19,18 @@
       class="thermometer-icon"
     />
     <div class="wrapper-max-temp">
-      <p class="max-temperature">Máx.: -15º F | C</p>
+      <p class="max-temperature paragraph-customization">
+        Máx.: {{ IWeatherCard.temperature.celsius.max }}º C | F
+      </p>
       <img
         src="../../../../assets/images/seta-vermelha-icon.svg"
         alt="seta vermelha para cima"
       />
     </div>
     <div class="wrapper-min-temp">
-      <p class="min-temperature">Mín.: -147º F | C</p>
+      <p class="min-temperature paragraph-customization">
+        Mín.: {{ IWeatherCard.temperature.celsius.min }}º C | F
+      </p>
       <img
         src="../../../../assets/images/seta-verde-icon.svg"
         alt="seta verde para baixo"
