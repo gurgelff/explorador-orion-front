@@ -1,23 +1,13 @@
-<div class="carousel-item">
-  <img
-    *ngIf="hideLeftArrow"
-    class="arrow-left"
-    src="../../../../assets/images/arrow.png"
-    alt=""
-  />
-  <div class="keen-slider">
-    <div *ngFor="let card of cards" class="keen-slider__slide">
+<div class="carousel">
+  <img class="arrow-left" src="../../../../assets/images/arrow.png" alt="" />
+  <swiper [config]="config">
+    <ng-template swiperSlide *ngFor="let card of cards">
       <p class="sol">{{ card.title }}</p>
       <p class="date">{{ card.date }}</p>
       <img src="../../../../assets/images/rectangle.png" alt="" />
       <p class="max-temp">{{ card.maxTemp }}</p>
       <p class="min-temp">{{ card.minTemp }}</p>
-    </div>
-  </div>
-  <img
-    *ngIf="hideRightArrow"
-    class="arrow-right"
-    src="../../../../assets/images/arrow.png"
-    alt=""
-  />
+    </ng-template>
+  </swiper>
+  <img class="arrow-right" src="../../../../assets/images/arrow.png" alt="" />
 </div>

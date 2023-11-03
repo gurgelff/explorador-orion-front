@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
-import { ElementRef, ViewChild } from '@angular/core';
-import KeenSlider, { KeenSliderInstance } from 'keen-slider';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import SwiperCore, {
+  Navigation,
+  Scrollbar,
+  A11y,
+  Pagination,
+  SwiperOptions,
+} from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
+SwiperCore.use([Pagination, Navigation, Scrollbar, A11y]);
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: [
-    '../../../../../node_modules/keen-slider/keen-slider.min.css',
-    './carousel.component.scss',
-  ],
+  styleUrls: ['./carousel.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class CarouselComponent {
+export class CarouselComponent implements AfterViewInit {
   cards = [
     ...Array(14)
       .fill(null)
@@ -29,34 +39,35 @@ export class CarouselComponent {
       }),
   ];
 
-  @ViewChild('sliderRef') sliderRef?: ElementRef<HTMLElement>;
+  config: SwiperOptions = {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+  };
 
-  public slider?: KeenSliderInstance;
-  public hideLeftArrow = false;
-  public hideRightArrow = true;
+  @ViewChild(SwiperComponent) swiperComponent?: SwiperComponent;
 
+  /**
+   * Chama `updateArrowVisibility` inicialmente para garantir que as setas sejam exibidas ou ocultadas corretamente.
+   * Configura dois ouvintes de eventos no objeto Swiper para controlar a visibilidade das setas de navegação.
+   */
   public ngAfterViewInit(): void {
-    this.slider = new KeenSlider('.keen-slider', {
-      slides: {
-        perView: 5,
-        spacing: 24,
-      },
-      dragStarted: () => {
-        this.toggleArrowVisibility();
-      },
-      dragEnded: () => {
-        this.toggleArrowVisibility();
-      },
-    });
-
-    this.toggleArrowVisibility();
+    this.updateArrowVisibility();
+    this.swiperComponent?.swiperRef.on(
+      'slideChange',
+      this.updateArrowVisibility.bind(this)
+    );
   }
 
-  public toggleArrowVisibility(): void {
-    if (this.slider) {
-      const slideProgress = this.slider.track.details.progress;
-      this.hideLeftArrow = slideProgress > 0.1;
-      this.hideRightArrow = slideProgress < 0.95;
-    }
+  /**
+   * Atualiza a visibilidade das setas de navegação com base na posição do Swiper.
+   * Verifica se o Swiper atingiu o início ou o final do carrossel para ajustar a visibilidade das setas.
+   */
+  public updateArrowVisibility(): void {
+    const swiper = this.swiperComponent?.swiperRef;
+    const arrowLeft = document.querySelector('.arrow-left') as HTMLElement;
+    const arrowRight = document.querySelector('.arrow-right') as HTMLElement;
+
+    arrowLeft.style.visibility = swiper?.isBeginning ? 'hidden' : 'visible';
+    arrowRight.style.visibility = swiper?.isEnd ? 'hidden' : 'visible';
   }
 }
