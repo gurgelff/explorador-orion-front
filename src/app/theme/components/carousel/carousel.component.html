@@ -1,12 +1,12 @@
 <div class="carousel">
   <img class="arrow-left" src="../../../../assets/images/arrow.png" alt="" />
   <swiper [config]="config">
-    <ng-template swiperSlide *ngFor="let card of cards">
-      <p class="sol">{{ card.title }}</p>
-      <p class="date">{{ card.date }}</p>
+    <ng-template swiperSlide *ngFor="let weatherCard of weatherCards">
+      <p class="sol">{{ weatherCard.solDate }}</p>
+      <p class="date">{{ weatherCard.terrestrialDate }}</p>
       <img src="../../../../assets/images/rectangle.png" alt="" />
-      <p class="max-temp">{{ card.maxTemp }}</p>
-      <p class="min-temp">{{ card.minTemp }}</p>
+      <p class="max-temp">{{ weatherCard.temperature.fahrenheit.max }}</p>
+      <p class="min-temp">{{ weatherCard.temperature.fahrenheit.min }}</p>
     </ng-template>
   </swiper>
   <img class="arrow-right" src="../../../../assets/images/arrow.png" alt="" />

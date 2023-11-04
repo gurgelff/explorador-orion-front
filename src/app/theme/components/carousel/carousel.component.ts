@@ -21,24 +21,27 @@ SwiperCore.use([Pagination, Navigation, Scrollbar, A11y]);
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent implements AfterViewInit {
-  cards = [
-    ...Array(14)
-      .fill(null)
-      .map((_, index) => {
-        const currentTitle = 260 + index;
-        const currentDate = 10 + index + ' Setembro';
-        const maxTemp = -17 + (index % 3) + '° F';
-        const minTemp = -150 + (index % 3) + '° F';
+  weatherCards = Array(14)
+    .fill(null)
+    .map((_, index) => {
+      const solDate = 260 + index;
+      const terrestrialDate = `${10 + index} Setembro`;
+      const maxTemp = -17 + (index % 3);
+      const minTemp = -150 + (index % 3);
 
-        return {
-          title: `SOL ${currentTitle}`,
-          date: currentDate,
-          maxTemp: `Máx.: ${maxTemp}`,
-          minTemp: `Mín.: ${minTemp}`,
-        };
-      }),
-  ];
+      return {
+        solDate: `SOL ${solDate}`,
+        terrestrialDate,
+        temperature: {
+          fahrenheit: {
+            max: `Máx.: ${maxTemp}° F`,
+            min: `Mín.: ${minTemp}° F`,
+          },
+        },
+      };
+    });
 
+  // Configuração do componente Swiper. Define como os slides serão exibidos no carrossel.
   config: SwiperOptions = {
     slidesPerView: 'auto',
     spaceBetween: 24,
@@ -52,6 +55,10 @@ export class CarouselComponent implements AfterViewInit {
    */
   public ngAfterViewInit(): void {
     this.updateArrowVisibility();
+    this.swiperComponent?.swiperRef.on(
+      'reachEnd',
+      this.updateArrowVisibility.bind(this)
+    );
     this.swiperComponent?.swiperRef.on(
       'slideChange',
       this.updateArrowVisibility.bind(this)
