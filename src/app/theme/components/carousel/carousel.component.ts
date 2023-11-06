@@ -1,9 +1,11 @@
 import {
   AfterViewInit,
   Component,
+  Input,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { IWeatherCard } from 'src/app/core/models/IWeatherCard';
 import SwiperCore, {
   Navigation,
   Scrollbar,
@@ -21,25 +23,7 @@ SwiperCore.use([Pagination, Navigation, Scrollbar, A11y]);
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselComponent implements AfterViewInit {
-  weatherCards = Array(14)
-    .fill(null)
-    .map(() => {
-      const solDate = 3991;
-      const terrestrialDate = '2023-10-28';
-      const maxTemp = -77;
-      const minTemp = -13;
-
-      return {
-        solDate: solDate,
-        terrestrialDate,
-        temperature: {
-          fahrenheit: {
-            max: maxTemp,
-            min: minTemp,
-          },
-        },
-      };
-    });
+  @Input() public weatherCards: IWeatherCard[] = [];
 
   /**
    * Configuração do Swiper
@@ -49,12 +33,12 @@ export class CarouselComponent implements AfterViewInit {
    * - slidesPerView: Define o número de slides visíveis por vez como 'auto'.
    * - spaceBetween: Define o espaço (em pixels) entre os slides.
    */
-  config: SwiperOptions = {
+  public config: SwiperOptions = {
     slidesPerView: 'auto',
     spaceBetween: 24,
   };
 
-  @ViewChild(SwiperComponent) swiperComponent?: SwiperComponent;
+  @ViewChild(SwiperComponent) private swiperComponent?: SwiperComponent;
 
   /**
    * updateArrowVisibility
@@ -78,7 +62,7 @@ export class CarouselComponent implements AfterViewInit {
    * Atualiza a visibilidade das setas de navegação com base na posição do Swiper.
    * Verifica se o Swiper atingiu o início ou o final do carrossel para ajustar a visibilidade das setas.
    */
-  public updateArrowVisibility(): void {
+  private updateArrowVisibility(): void {
     const swiper = this.swiperComponent?.swiperRef;
     const arrowLeft = document.querySelector('.arrow-left') as HTMLElement;
     const arrowRight = document.querySelector('.arrow-right') as HTMLElement;
