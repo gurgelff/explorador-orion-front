@@ -1,16 +1,26 @@
 export interface IWeatherCard {
   temperature: {
     celsius: {
-      min: number;
-      max: number;
-      variation?: number; // ex: -5.3 indica temperatura 5.3 graus menor que o dia anterior. Acima de 0 use seta vermelha para cima (temp maior), abaixo de 0 use seta verde para baixo, e caso 0 não mostrar nada.
+      min: {
+        value: number;
+        variation?: number;
+      };
+      max: {
+        value: number;
+        variation?: number;
+      };
     };
     fahrenheit: {
-      min: number;
-      max: number;
-      variation?: number; // mesmo esquema
+      min: {
+        value: number;
+        variation?: number;
+      };
+      max: {
+        value: number;
+        variation?: number;
+      };
     };
   };
-  terrestrialDate: string; // Formato ISO 8601
-  solDate: number; // Inteiro
+  terrestrialDate: string;
+  solDate: number;
 }
