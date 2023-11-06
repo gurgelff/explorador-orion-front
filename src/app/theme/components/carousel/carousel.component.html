@@ -2,11 +2,11 @@
   <img class="arrow-left" src="../../../../assets/images/arrow.png" alt="" />
   <swiper [config]="config">
     <ng-template swiperSlide *ngFor="let weatherCard of weatherCards">
-      <p class="sol">{{ weatherCard.solDate }}</p>
-      <p class="date">{{ weatherCard.terrestrialDate }}</p>
+      <p class="sol">SOL {{ weatherCard.solDate }}</p>
+      <p class="date">{{ weatherCard.terrestrialDate | date }}</p>
       <img src="../../../../assets/images/rectangle.png" alt="" />
-      <p class="max-temp">{{ weatherCard.temperature.fahrenheit.max }}</p>
-      <p class="min-temp">{{ weatherCard.temperature.fahrenheit.min }}</p>
+      <p class="max-temp">Máx.: {{ weatherCard.temperature.fahrenheit.max }}° F</p>
+      <p class="min-temp">Mín.: {{ weatherCard.temperature.fahrenheit.min }}° F</p>
     </ng-template>
   </swiper>
   <img class="arrow-right" src="../../../../assets/images/arrow.png" alt="" />

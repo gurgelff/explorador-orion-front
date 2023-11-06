@@ -8,6 +8,7 @@ import { MarsWeatherPanelComponent } from './mars-weather-panel/mars-weather-pan
 import { LogoutComponent } from '../theme/components/logout/logout.component';
 import { PageTitleComponent } from '../theme/components/page-title/page-title.component';
 import { CarouselComponent } from '../theme/components/carousel/carousel.component';
+import { DatePipe } from '../core/common/pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CarouselComponent } from '../theme/components/carousel/carousel.compone
     LogoutComponent,
     PageTitleComponent,
     CarouselComponent,
+    DatePipe
   ],
   imports: [
     CommonModule,

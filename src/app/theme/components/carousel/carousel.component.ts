@@ -23,25 +23,32 @@ SwiperCore.use([Pagination, Navigation, Scrollbar, A11y]);
 export class CarouselComponent implements AfterViewInit {
   weatherCards = Array(14)
     .fill(null)
-    .map((_, index) => {
-      const solDate = 260 + index;
-      const terrestrialDate = `${10 + index} Setembro`;
-      const maxTemp = -17 + (index % 3);
-      const minTemp = -150 + (index % 3);
+    .map(() => {
+      const solDate = 3991;
+      const terrestrialDate = '2023-10-28';
+      const maxTemp = -77;
+      const minTemp = -13;
 
       return {
-        solDate: `SOL ${solDate}`,
+        solDate: solDate,
         terrestrialDate,
         temperature: {
           fahrenheit: {
-            max: `Máx.: ${maxTemp}° F`,
-            min: `Mín.: ${minTemp}° F`,
+            max: maxTemp,
+            min: minTemp,
           },
         },
       };
     });
 
-  // Configuração do componente Swiper. Define como os slides serão exibidos no carrossel.
+  /**
+   * Configuração do Swiper
+   *
+   * Define as opções de configuração para o componente Swiper, que controla a exibição de slides.
+   *
+   * - slidesPerView: Define o número de slides visíveis por vez como 'auto'.
+   * - spaceBetween: Define o espaço (em pixels) entre os slides.
+   */
   config: SwiperOptions = {
     slidesPerView: 'auto',
     spaceBetween: 24,
@@ -50,8 +57,10 @@ export class CarouselComponent implements AfterViewInit {
   @ViewChild(SwiperComponent) swiperComponent?: SwiperComponent;
 
   /**
-   * Chama `updateArrowVisibility` inicialmente para garantir que as setas sejam exibidas ou ocultadas corretamente.
-   * Configura dois ouvintes de eventos no objeto Swiper para controlar a visibilidade das setas de navegação.
+   * updateArrowVisibility
+   *
+   * Atualiza a visibilidade das setas de navegação com base na posição atual do Swiper.
+   * As setas de navegação são ocultadas quando o início ou o fim do carrossel é alcançado.
    */
   public ngAfterViewInit(): void {
     this.updateArrowVisibility();
