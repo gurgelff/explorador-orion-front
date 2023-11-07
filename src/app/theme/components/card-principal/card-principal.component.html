@@ -1,4 +1,4 @@
-<div *ngFor="let weatherCard of weatherCards" class="card-principal">
+<div class="card-principal">
   <div class="calendar-section">
     <img
       src="../../../../assets/images/icon-calendar.svg"
@@ -6,34 +6,40 @@
       class="calendar-icon-img"
     />
     <p class="display-day paragraph-customization">
-      Sol {{ weatherCard.solDate }}
+      Sol {{ weatherCard?.solDate }}
     </p>
     <p class="display-date paragraph-customization">
-      {{ weatherCard.terrestrialDate | date : "dd/MM/yyyy" }}
+      {{
+        weatherCard?.terrestrialDate
+          ? (weatherCard?.terrestrialDate | datePipe : "dd 'de' MMMM 'de' yyyy")
+          : ""
+      }}
     </p>
   </div>
   <div class="temperature-section">
     <img
       src="../../../../assets/images/Thermometer-icon.svg"
-      alt="icone de um termômetro"
+      alt="thermometer icon"
       class="thermometer-icon"
     />
     <div class="wrapper-max-temp">
       <p class="max-temperature paragraph-customization">
-        Máx.: {{ weatherCard.temperature.celsius.max.value }}º C | F
+        Max.: {{ weatherCard?.temperature?.celsius?.max?.value }}º C | F
       </p>
       <img
+        [ngClass]="{ 'red-arrow': evaluateTemperature() === 'Greater' }"
         src="../../../../assets/images/seta-vermelha-icon.svg"
-        alt="seta vermelha para cima"
+        alt="red up arrow"
       />
     </div>
     <div class="wrapper-min-temp">
       <p class="min-temperature paragraph-customization">
-        Mín.: {{ weatherCard.temperature.celsius.min.value }}º C | F
+        Min.: {{ weatherCard?.temperature?.celsius?.min?.value }}º C | F
       </p>
       <img
+        [ngClass]="{ 'green-arrow': evaluateTemperature() === 'Less' }"
         src="../../../../assets/images/seta-verde-icon.svg"
-        alt="seta verde para baixo"
+        alt="green down arrow"
       />
     </div>
   </div>

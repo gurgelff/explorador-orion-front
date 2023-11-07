@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-// import * as dateFnsLocale from 'date-fns/locale';
-// import { format } from 'date-fns';
-import { IWeatherCard } from 'src/app/core/models/IWeatherCard';
+import { IWeatherCard } from '../../../core/models/IWeatherCard';
 
 @Component({
   selector: 'app-card-principal',
@@ -9,32 +7,22 @@ import { IWeatherCard } from 'src/app/core/models/IWeatherCard';
   styleUrls: ['./card-principal.component.scss'],
 })
 export class CardPrincipalComponent {
-  @Input() public weatherCards: IWeatherCard[] = [];
-  // IWeatherCard = {
-  //   temperature: {
-  //     celsius: {
-  //       min: -15,
-  //       max: 31,
-  //       variation: 5.3,
-  //     },
-  //     fahrenheit: {
-  //       min: 5,
-  //       max: 86,
-  //       variation: 5.3,
-  //     },
-  //   },
-  //   terrestrialDate: '2023-09-23T00:00:00Z',
-  //   solDate: 259,
-  // };
+  @Input() public weatherCard: IWeatherCard | undefined = undefined;
+  @Input() public previousDayTemperature: number | undefined = undefined; // Recebe a temperatura do dia anterior
 
-  // formattedTerrestrialDate: string;
+  evaluateTemperature(): string {
+    // Verifica se o objeto de dados do tempo e a temperatura do dia anterior estão definidos
+    if (this.weatherCard && this.previousDayTemperature !== undefined) {
+      const currentTemperature = this.weatherCard.temperature.celsius.max.value;
 
-  // constructor() {
-  //   // Converter a data de string para um objeto Date
-  //   const terrestrialDate = new Date(this.weatherCards.terrestrialDate);
+      // Compara a temperatura atual com a do dia anterior e retorna um rótulo
+      return currentTemperature > this.previousDayTemperature
+        ? 'Greater'
+        : currentTemperature < this.previousDayTemperature
+        ? 'Less'
+        : 'Equal';
+    }
 
-  //   this.formattedTerrestrialDate = format(terrestrialDate, 'dd MMMM yyyy', {
-  //     locale: dateFnsLocale.ptBR,
-  //   }).replace(/ /g, ' de ');
-  // }
+    return 'Undefined';
+  }
 }

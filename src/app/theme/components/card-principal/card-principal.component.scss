@@ -5,33 +5,35 @@
 }
 
 .card-principal {
-  width: 600px;
+  width: 654px;
+  height: 212px;
   display: flex;
+  align-items: center;
   border-radius: 26px;
   background: rgba(62, 51, 51, 0.25);
-  padding: 45px 80px 41px 32px;
 }
 
 .display-day,
 .max-temperature {
   font-weight: 700;
-  font-size: 36px;
+  font-size: 34px;
 }
 
 .display-date,
 .min-temperature {
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 4px;
 }
 
 .calendar-section {
   width: 165px;
   height: 127px;
-  margin-right: 40px;
+  margin: 44px 54px 41px 32px;
 
   .calendar-icon-img {
     width: 42px;
     height: 42px;
+    margin-bottom: 16px;
   }
 
   .display-day {
@@ -48,6 +50,7 @@
     font-family: Inter;
     font-style: normal;
     line-height: normal;
+    font-weight: 100;
   }
 }
 
@@ -59,7 +62,7 @@
   .thermometer-icon {
     width: 42px;
     height: 42px;
-    margin-bottom: 6px;
+    margin-bottom: 22px;
   }
 
   .max-temperature {
@@ -88,4 +91,12 @@
 .wrapper-max-temp img,
 .wrapper-min-temp img {
   margin-left: 10px;
+}
+
+.red-arrow {
+  fill: red; /* Estilo da seta vermelha */
+}
+
+.green-arrow {
+  fill: green; /* Estilo da seta verde */
 }
