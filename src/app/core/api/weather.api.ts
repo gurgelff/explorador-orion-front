@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BaseAPI } from '../api/base.api';
+import { BaseAPI } from './base.api';
 import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../services/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherAPIService extends BaseAPI {
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
+  constructor(httpClient: HttpClient, storageService: StorageService) {
+    super(httpClient, storageService);
     this.apiUrl += '/weather';
   }
 }
