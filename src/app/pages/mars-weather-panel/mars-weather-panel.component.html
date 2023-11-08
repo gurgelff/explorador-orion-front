@@ -1,6 +1,19 @@
-<app-page-title
-  [title]="'Meteorologia em Marte'"
-  [subtitle]="'Veja abaixo as temperaturas registradas até o momento.'"
-></app-page-title>
-<app-logout></app-logout>
-<app-carousel [weatherCards]="weatherCards"></app-carousel>
+<div class="mars-weather moon-centered-large-background">
+  <div class="weather-info">
+    <div class="weather-title">
+      <a class="back-arrow">
+        <img src="../../../assets/images/back-arrow.png" alt="Voltar" />
+      </a>
+      <app-page-title
+        [title]="'Meteorologia em Marte'"
+        [subtitle]="'Veja abaixo as temperaturas registradas até o momento.'"
+      ></app-page-title>
+    </div>
+    <app-logout></app-logout>
+  </div>
+  <div class="main-card"></div>
+  <app-carousel
+    class="cards-carousel"
+    [weatherCards]="weatherCards"
+  ></app-carousel>
+</div>

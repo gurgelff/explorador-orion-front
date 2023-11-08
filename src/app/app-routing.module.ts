@@ -12,8 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'pages',
-    loadChildren: (): Promise<Type<PagesModule> | PagesModule[]> => import('./pages/pages.module').then(m => m.PagesModule),
-    canActivate: [AuthGuardService]
+    loadChildren: (): Promise<Type<PagesModule> | PagesModule[]> =>
+      import('./pages/pages.module').then((m) => m.PagesModule),
+    canActivate: [AuthGuardService],
   },
   { path: '**', redirectTo: 'auth' },
 ];
