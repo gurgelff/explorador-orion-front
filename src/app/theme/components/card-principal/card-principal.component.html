@@ -6,12 +6,12 @@
       class="calendar-icon-img"
     />
     <p class="display-day paragraph-customization">
-      Sol {{ weatherCard?.solDate }}
+      Sol {{ weatherCard.solDate }}
     </p>
     <p class="display-date paragraph-customization">
       {{
-        weatherCard?.terrestrialDate
-          ? (weatherCard?.terrestrialDate | datePipe : "dd 'de' MMMM 'de' yyyy")
+        weatherCard.terrestrialDate
+          ? (weatherCard.terrestrialDate | datePipe : "dd 'de' MMMM 'de' yyyy")
           : ""
       }}
     </p>
@@ -24,23 +24,15 @@
     />
     <div class="wrapper-max-temp">
       <p class="max-temperature paragraph-customization">
-        Max.: {{ weatherCard?.temperature?.celsius?.max?.value }}º C | F
+        Max.: {{ weatherCard.temperature.celsius.max.value }}º C | F
       </p>
-      <img
-        [ngClass]="{ 'red-arrow': evaluateTemperature() === 'Greater' }"
-        src="../../../../assets/images/seta-vermelha-icon.svg"
-        alt="red up arrow"
-      />
+      <div [innerHTML]="getTemperature('max')"></div>
     </div>
     <div class="wrapper-min-temp">
       <p class="min-temperature paragraph-customization">
-        Min.: {{ weatherCard?.temperature?.celsius?.min?.value }}º C | F
+        Min.: {{ weatherCard.temperature.celsius.min.value }}º C | F
       </p>
-      <img
-        [ngClass]="{ 'green-arrow': evaluateTemperature() === 'Less' }"
-        src="../../../../assets/images/seta-verde-icon.svg"
-        alt="green down arrow"
-      />
+      <div [innerHTML]="getTemperature('min')"></div>
     </div>
   </div>
 </div>

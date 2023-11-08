@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EnumVariation } from 'src/app/core/common/enums/enum.variation';
 
 @Component({
   selector: 'app-mars-weather-panel',
@@ -21,21 +22,21 @@ export class MarsWeatherPanelComponent {
           celsius: {
             max: {
               value: maxTemp,
-              variation: 0,
+              variation: EnumVariation.HIGHER,
             },
             min: {
               value: minTemp,
-              variation: 0,
+              variation: EnumVariation.LOWER,
             },
           },
           fahrenheit: {
             max: {
               value: maxTemp,
-              variation: 0,
+              variation: EnumVariation.HIGHER,
             },
             min: {
               value: minTemp,
-              variation: 0,
+              variation: EnumVariation.LOWER,
             },
           },
         },
