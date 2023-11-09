@@ -8,6 +8,7 @@ export function noSpaces(): ValidatorFn {
     if (password?.value.match(/\s/)) {
       return { noSpacesError: true };
     }
+    
     return null;
   }
 }
@@ -20,6 +21,7 @@ export function upperCaseValidation(): ValidatorFn {
     if (!password?.value.match(/[A-Z]/)) {
       return { upperCaseError: true };
     }
+
     return null;
   };
 }
@@ -32,6 +34,7 @@ export function specialLetterValidation(): ValidatorFn {
     if (!password?.value.match(/[^A-Za-z0-9]/g)) {
       return { specialLetterError: true };
     }
+
     return null;
   }
 }
@@ -44,6 +47,7 @@ export function numbersValidation(): ValidatorFn {
     if (!password?.value.match(/[0-9]/g)) {
       return { numbersError: true };
     }
+
     return null;
   }
 }
@@ -56,6 +60,7 @@ export function hasEnoughLetters(): ValidatorFn {
     if (!(password?.value.length >= 8)) {
       return { passwordSizeError: true };
     }
+
     return null;
   }
 }

@@ -1,13 +1,13 @@
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgIf, } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IRequestNewPass } from 'src/app/core/models/request-password.reset';
-import { IResponsePasswordForgot } from 'src/app/core/models/response-password-forgot';
+import { NewPasswordApi } from 'src/app/core/api/new-password.api';
+import { IRequestNewPass } from 'src/app/core/models/IRequestNewPass';
+import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
 import { ModalService } from 'src/app/core/services/modal.service';
-import { ForgotPasswordAPI } from '../../core/api/forgot-password.api';
 import { LoaderService } from '../../core/services/loader.service';
 import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation, upperCaseValidation } from './customValidator/passMatch-Validator';
 
@@ -38,7 +38,7 @@ export class NewPasswordComponent {
     private formBuilder: FormBuilder, 
     private router: Router,
     private loaderService: LoaderService,
-    private resetPassApi: ForgotPasswordAPI,
+    private resetPassApi: NewPasswordApi,
     private modalService: ModalService
   ) {
     this.router = router;
@@ -62,6 +62,23 @@ export class NewPasswordComponent {
       validators: this.passwordMatchValidator
     });
   }
+  
+  private ngOnInit(): void {
+    this.loadScreen();
+  }
+  
+  private loadScreen(): void {
+    this.loaderService.setLoading(true);
+    this.resetPassApi
+      .tokenVerify(this.userId, this.resetToken)
+      .catch((error) => {
+        this.errorMessage = error;
+        this.modalService.showSuccessDialog(this.errorMessage)
+      })
+      .finally(() => {
+        this.loaderService.setLoading(false);
+      });
+  }
 
   private passwordMatchValidator(formNewPassword: FormGroup): void {
     const password: string = formNewPassword?.get('password')?.value;
@@ -74,7 +91,7 @@ export class NewPasswordComponent {
     }
   }
 
-  protected goBack(): void{
+  protected goBack(): void {
     this.router.navigate(['/login']);
   }
 
@@ -82,15 +99,15 @@ export class NewPasswordComponent {
     const password: string = this.formNewPassword?.get('password')?.value.replace(/\s/g, "");
     const passConfirmation: string = this.formNewPassword?.get('passConfirmation')?.value.replace(/\s/g, "");
     const userData: IRequestNewPass = {
-      token: this.resetToken, 
-      id: parseInt(this.userId),
+      resetToken: this.resetToken, 
       password,
       confirmPassword: passConfirmation,
+      id: this.userId,
     }
     return userData;
   }
 
-  protected newPassBtnRequest(): void{
+  protected newPassBtnRequest(): void {
     const userData = this.createRequestJson();
     this.loaderService.setLoading(true);
     this.resetPassApi
@@ -100,10 +117,10 @@ export class NewPasswordComponent {
       })
       .catch((error) => {
         this.errorMessage = error;
+        this.modalService.showSuccessDialog(this.errorMessage)
       })
       .finally(() => {
         this.loaderService.setLoading(false);
       });
   }
-
 }
