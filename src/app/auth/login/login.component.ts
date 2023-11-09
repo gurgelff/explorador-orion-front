@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
-import { IResponseLogin } from 'src/app/core/models/response-login';
+import { IResponseLogin } from 'src/app/core/models/IResponseLogin';
 import { EmailService } from 'src/app/core/services/email.service';
 import { AuthAPI } from '../../core/api/auth.api';
 import { LoaderService } from '../../core/services/loader.service';

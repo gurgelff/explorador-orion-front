@@ -17,10 +17,22 @@ export class NewPasswordApi extends BaseAPI {
     this.apiUrl += '/reset-password';
   }
 
+  /**
+   * Faz o POST na rota /reset-password
+   * @param userData Json contendo as senhas para fazer o POST na rota reset/password
+   * @returns Uma promise contendo a resposta da rota
+   */
   public newPassRequest(userData: IRequestNewPass): Promise<IResponsePasswordForgot> {
     return this.post(userData);
   }
   
+  /**
+   * Verifica através de um GET na rota /reset-password/:id/:resetToekn
+   * se o id e o resetToken sao validos
+   * @param id ID do usuário a ser verificado
+   * @param resetToken Token a ser verificado
+   * @returns Uma promise contendo a resposta da rota
+   */
   public tokenVerify(id: string, resetToken: string): Promise<IResponsePasswordForgot> {
     return this.get(`/${id}/${resetToken}`);
   }

@@ -1,15 +1,19 @@
-import { IResponseLogin } from './../models/response-login';
+import { IResponseLogin } from '../models/IResponseLogin';
 import { Injectable } from '@angular/core';
 import { BaseAPI } from './base.api';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
+import { StorageService } from '../services/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthAPI extends BaseAPI {
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
+  constructor(
+    protected override httpClient: HttpClient,
+    protected override storageService: StorageService
+  ) {
+    super(httpClient, storageService);
     this.apiUrl += '/login';
   }
 

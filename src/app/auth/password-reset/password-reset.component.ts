@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
 import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
-import { IResponsePasswordForgot } from 'src/app/core/models/response-password-forgot';
+import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
 import { EmailService } from 'src/app/core/services/email.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { ModalService } from 'src/app/core/services/modal.service';

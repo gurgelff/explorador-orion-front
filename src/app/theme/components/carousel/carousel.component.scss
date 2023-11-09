@@ -1,0 +1,72 @@
+@import "../../styles/theme.scss";
+@import "swiper/scss";
+
+.carousel {
+  display: flex;
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+  width: 152px;
+  height: 156px;
+  border-radius: 20.953px;
+  border: 0.806px solid #292929;
+  box-sizing: content-box;
+}
+
+.sol {
+  color: $white;
+  font-family: "Inter", sans-serif;
+  font-size: 19.341px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.date {
+  color: $white;
+  font-family: "Inter", sans-serif;
+  font-size: 12.894px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.max-temp {
+  color: #ffd2b5;
+  font-family: "Inter", sans-serif;
+  font-size: 19.341px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.min-temp {
+  color: #ffd2b5;
+  font-family: "Inter", sans-serif;
+  font-size: 12.894px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.arrow-left,
+.arrow-right {
+  width: 28px;
+  height: 28px;
+}
+
+.arrow-left {
+  transform: scaleX(-1);
+  margin-right: 32px;
+}
+
+.arrow-right {
+  margin-left: 32px;
+}
