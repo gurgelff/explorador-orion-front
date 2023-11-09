@@ -3,31 +3,30 @@ import * as dateFnsLocale from 'date-fns/locale';
 import { format } from 'date-fns';
 
 @Pipe({
-  name: 'date',
+  name: 'datePipe',
 })
 export class DatePipe implements PipeTransform {
   /**
-   * transform
+   * Transforma a data fornecida em uma string formatada de acordo com o formato especificado.
    *
-   * Transforma uma data em uma string formatada com base no local do usuário.
-   *
-   * @param date - Data a ser formatada como uma string.
-   *
-   * @returns Data formatada como uma string.
+   * @param date - A data de entrada a ser formatada.
+   * @param formatString - Uma string de formato que determina como a data deve ser exibida.
+   * @returns A data formatada como uma string.
    */
-  transform(date: string): string {
+  transform(date: string | undefined, formatString = 'dd MMMM'): string {
+    if (!date) {
+      return '';
+    }
     const localDate = this.adjustDateToUserTimezone(date);
-    return this.formatDateWithLocale(localDate);
+    return this.formatDateWithLocale(localDate, formatString);
   }
 
   /**
-   * adjustDateToUserTimezone
+   * Converte a data de entrada em um objeto de data considerando o fuso horário do usuário.
    *
-   * Converte uma string de data em um objeto Date e ajusta para o fuso horário do usuário.
-   *
-   * @param date - String de data a ser convertida.
-   *
-   * @returns Objeto Date ajustado para o fuso horário do usuário.
+   * @param date - A data de entrada a ser convertida.
+   * @returns A data convertida para o fuso horário do usuário.
+   * @private
    */
   private adjustDateToUserTimezone(date: string): Date {
     const dateObj = new Date(date);
@@ -35,16 +34,15 @@ export class DatePipe implements PipeTransform {
   }
 
   /**
-   * formatDateWithLocale
+   * Formata a data fornecida de acordo com o formato especificado e o idioma do usuário.
    *
-   * Formata uma data com base no local do usuário e retorna a representação da data como uma string.
-   *
-   * @param date - Objeto Date a ser formatado.
-   *
-   * @returns Data formatada como uma string de acordo com o local do usuário.
+   * @param date - A data a ser formatada.
+   * @param formatString - Uma string de formato que determina como a data deve ser exibida.
+   * @returns A data formatada como uma string.
+   * @private
    */
-  private formatDateWithLocale(date: Date): string {
+  private formatDateWithLocale(date: Date, formatString: string): string {
     const userLocale = 'ptBR';
-    return format(date, 'dd MMMM', { locale: dateFnsLocale[userLocale] });
+    return format(date, formatString, { locale: dateFnsLocale[userLocale] });
   }
 }

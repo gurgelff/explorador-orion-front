@@ -4,6 +4,7 @@ import { IWeatherCard } from 'src/app/core/models/IWeatherCard';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { WeatherAPIService } from 'src/app/core/api/weather.api';
 
+
 @Component({
   selector: 'app-mars-weather-panel',
   templateUrl: './mars-weather-panel.component.html',
@@ -12,6 +13,7 @@ import { WeatherAPIService } from 'src/app/core/api/weather.api';
 export class MarsWeatherPanelComponent implements OnInit {
   public weatherCards!: IWeatherCard[];
   public lastTemperature!: IWeatherCard;
+
 
   constructor(
     private weatherAPIService: WeatherAPIService,

@@ -9,6 +9,7 @@ import { LogoutComponent } from '../theme/components/logout/logout.component';
 import { PageTitleComponent } from '../theme/components/page-title/page-title.component';
 import { CarouselComponent } from '../theme/components/carousel/carousel.component';
 import { DatePipe } from '../core/common/pipes/date.pipe';
+import { CardPrincipalComponent } from '../theme/components/card-principal/card-principal.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,10 @@ import { DatePipe } from '../core/common/pipes/date.pipe';
     MarsWeatherPanelComponent,
     LogoutComponent,
     PageTitleComponent,
+    CardPrincipalComponent,
     CarouselComponent,
-    DatePipe
+    DatePipe,
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    SwiperModule
-  ],
+  imports: [CommonModule, PagesRoutingModule, SwiperModule],
 })
 export class PagesModule {}

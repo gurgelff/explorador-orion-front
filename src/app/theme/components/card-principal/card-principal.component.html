@@ -1,0 +1,38 @@
+<div class="card-principal">
+  <div class="calendar-section">
+    <img
+      src="../../../../assets/images/icon-calendar.svg"
+      alt="icone de um calendário"
+      class="calendar-icon-img"
+    />
+    <p class="display-day paragraph-customization">
+      Sol {{ weatherCard.solDate }}
+    </p>
+    <p class="display-date paragraph-customization">
+      {{
+        weatherCard.terrestrialDate
+          ? (weatherCard.terrestrialDate | datePipe : "dd 'de' MMMM 'de' yyyy")
+          : ""
+      }}
+    </p>
+  </div>
+  <div class="temperature-section">
+    <img
+      src="../../../../assets/images/Thermometer-icon.svg"
+      alt="thermometer icon"
+      class="thermometer-icon"
+    />
+    <div class="wrapper-max-temp">
+      <p class="max-temperature paragraph-customization">
+        Max.: {{ weatherCard.temperature.celsius.max.value }}º C | F
+      </p>
+      <div [innerHTML]="getTemperature('max')"></div>
+    </div>
+    <div class="wrapper-min-temp">
+      <p class="min-temperature paragraph-customization">
+        Min.: {{ weatherCard.temperature.celsius.min.value }}º C | F
+      </p>
+      <div [innerHTML]="getTemperature('min')"></div>
+    </div>
+  </div>
+</div>
