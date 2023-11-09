@@ -38,7 +38,6 @@ export class CardPrincipalComponent {
 
     const height = currentVariation === EnumVariation.HIGHER ? '35px' : '17px';
     const width = currentVariation === EnumVariation.HIGHER ? '25px' : '17px';
-    // const marginTop = currentVariation === EnumVariation.HIGHER ? '15px' : '0';
 
     const svgElement = `<svg
       width="20"
