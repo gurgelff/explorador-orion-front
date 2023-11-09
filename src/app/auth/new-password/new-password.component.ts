@@ -1,5 +1,5 @@
 import { CommonModule, NgIf, } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -25,7 +25,7 @@ import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation,
   ],
 })
 
-export class NewPasswordComponent {
+export class NewPasswordComponent implements OnInit {
   public formNewPassword: FormGroup;
   public hideSecondPass = true;
   public specialCharTheme = '';
@@ -63,7 +63,11 @@ export class NewPasswordComponent {
     });
   }
   
-  private ngOnInit(): void {
+  /**
+   * Realizar a checagem do resetToken e do Id de usuário ao 
+   * inicializar a tela
+   */
+  public ngOnInit(): void {
     this.loadScreen();
   }
 

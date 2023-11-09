@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class LoginComponent {
     private storageService: StorageService,
     private router: Router,
     private loaderService: LoaderService,
-    @Inject(EmailService) private emailService: EmailService
+    private emailService: EmailService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),

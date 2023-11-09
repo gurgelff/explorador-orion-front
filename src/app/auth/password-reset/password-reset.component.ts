@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -30,7 +30,7 @@ export class PasswordResetComponent implements OnInit {
   public email!: string;
 
   constructor(
-    @Inject(ForgotPasswordAPI) private forgotPasswordAPI: ForgotPasswordAPI,
+    private forgotPasswordAPI: ForgotPasswordAPI,
     private router: Router,
     private loaderService: LoaderService,
     private modalService: ModalService,
