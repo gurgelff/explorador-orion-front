@@ -1,5 +1,8 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
+/**
+ * Valida se existe algum espaço dentro do campo de password
+ */
 export function noSpaces(): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean} | null => {
     const formGroup = newPassFormControl.parent;    
@@ -13,6 +16,9 @@ export function noSpaces(): ValidatorFn {
   }
 }
 
+/**
+ * Valida se existe pelo menos uma letra maiuscula
+ */
 export function upperCaseValidation(): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;
@@ -26,6 +32,9 @@ export function upperCaseValidation(): ValidatorFn {
   };
 }
 
+/**
+ * Valida se existe pelo menos um caractere especial
+ */
 export function specialLetterValidation(): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;
@@ -39,6 +48,9 @@ export function specialLetterValidation(): ValidatorFn {
   }
 }
 
+/**
+ * Valida se existe pelo menos um número
+ */
 export function numbersValidation(): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;
@@ -52,6 +64,9 @@ export function numbersValidation(): ValidatorFn {
   }
 }
 
+/**
+ * Valida se a senha contém pelo menos 8 caracteres
+ */
 export function hasEnoughLetters(): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;

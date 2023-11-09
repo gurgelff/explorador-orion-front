@@ -66,7 +66,14 @@ export class NewPasswordComponent {
   private ngOnInit(): void {
     this.loadScreen();
   }
-  
+
+  /**
+   * Ao carregar a página, essa função é chamada no ngOnInit
+   * Ela é responsável por validar o token fazendo uma
+   * requisição no backend na rota /reset/password/:id/:token
+   * Se o token for válido, a página irá carregar, caso contrário
+   * volta para a tela de login após mostrar o modal com o erro
+   */
   private loadScreen(): void {
     this.loaderService.setLoading(true);
     this.resetPassApi
@@ -80,6 +87,10 @@ export class NewPasswordComponent {
       });
   }
 
+  /**
+   * Responsável por validar se ambos os campos de input, contém a mesma senha
+   * @param formNewPassword Formulário contendo todos dados sobre os inputs de senhas
+   */
   private passwordMatchValidator(formNewPassword: FormGroup): void {
     const password: string = formNewPassword?.get('password')?.value;
     const passConfirmation: string = formNewPassword?.get('passConfirmation')?.value;
@@ -91,10 +102,19 @@ export class NewPasswordComponent {
     }
   }
 
+  /**
+   * Responsável por navegar para a tela login
+   * usada na seta para voltar e no botão "CANCELAR"
+   */
   protected goBack(): void {
     this.router.navigate(['/login']);
   }
 
+  /**
+   * Responsável por montar o objeto que irá conter todos os dados para fazer
+   * uma requisição na rota post /reset/password no backend
+   * @returns Um json contendo todos os dados para fazer requisição post na rota /reset/password
+   */
   private createRequestJson(): IRequestNewPass {
     const password: string = this.formNewPassword?.get('password')?.value.replace(/\s/g, "");
     const passConfirmation: string = this.formNewPassword?.get('passConfirmation')?.value.replace(/\s/g, "");
@@ -107,6 +127,11 @@ export class NewPasswordComponent {
     return userData;
   }
 
+  /**
+   * Responsável por fazer o post com os dados dos inputs
+   * para a rota /reset/backend
+   * Funçao é adicionada ao botão "ENVIAR"
+   */
   protected newPassBtnRequest(): void {
     const userData = this.createRequestJson();
     this.loaderService.setLoading(true);

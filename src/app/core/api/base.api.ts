@@ -24,7 +24,7 @@ export class BaseAPI {
 
   /**
    * Realiza uma requisição HTTP GET para a URL da API.
-   *
+   * @param params String contendo alguns parametros caso necessário para rotas GET
    * @returns Uma Promise com a resposta da API no resolve se a requisição for bem-sucedida, ou uma mensagem de erro no reject em caso de falha.
    */
   public get<TR>(params = ''): Promise<TR> {
