@@ -17,16 +17,18 @@
 .max-temperature {
   font-weight: 700;
   font-size: 34px;
+  margin-right: 13px;
 }
 
 .display-date,
 .min-temperature {
   font-size: 14px;
   margin-bottom: 4px;
+  margin-right: 8px;
 }
 
 .calendar-section {
-  width: 165px;
+  width: 175px;
   height: 127px;
   margin: 44px 54px 41px 32px;
 
@@ -91,12 +93,4 @@
 .wrapper-max-temp img,
 .wrapper-min-temp img {
   margin-left: 10px;
-}
-
-.red-arrow {
-  fill: red; /* Estilo da seta vermelha */
-}
-
-.green-arrow {
-  fill: green; /* Estilo da seta verde */
 }
