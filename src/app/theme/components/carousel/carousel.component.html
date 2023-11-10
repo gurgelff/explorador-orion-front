@@ -3,13 +3,13 @@
   <swiper [config]="config">
     <ng-template swiperSlide *ngFor="let weatherCard of weatherCards">
       <p class="sol">SOL {{ weatherCard.solDate }}</p>
-      <p class="date">{{ weatherCard.terrestrialDate | date }}</p>
+      <p class="date">{{ weatherCard.terrestrialDate | datePipe }}</p>
       <img src="../../../../assets/images/rectangle.png" alt="" />
       <p class="max-temp">
-        Máx.: {{ weatherCard.temperature.fahrenheit.max.value }}° F
+        Máx.: {{ weatherCard.temperature.celsius.max.value }}° C
       </p>
       <p class="min-temp">
-        Mín.: {{ weatherCard.temperature.fahrenheit.min.value }}° F
+        Mín.: {{ weatherCard.temperature.celsius.min.value }}° C
       </p>
     </ng-template>
   </swiper>

@@ -11,7 +11,10 @@
     </div>
     <app-logout></app-logout>
   </div>
-  <div class="main-card"></div>
+  <app-card-principal
+    [weatherCard]="weatherCards[weatherCards.length - 1]"
+    class="main-card"
+  ></app-card-principal>
   <app-carousel
     class="cards-carousel"
     [weatherCards]="weatherCards"
