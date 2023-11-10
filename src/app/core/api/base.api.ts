@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/app/environments/environment';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { environment } from 'src/app/environments/environment';
 
 export class BaseAPI {
   protected apiUrl: string = environment.apiUrl;
@@ -24,14 +24,13 @@ export class BaseAPI {
 
   /**
    * Realiza uma requisição HTTP GET para a URL da API.
-   *
+   * @param params String contendo alguns parametros caso necessário para rotas GET
    * @returns Uma Promise com a resposta da API no resolve se a requisição for bem-sucedida, ou uma mensagem de erro no reject em caso de falha.
    */
-  public get<TR>(): Promise<TR> {
+  public get<TR>(params = ''): Promise<TR> {
     const headers = this.setHeaders();
-
     return new Promise<TR>((resolve, reject) => {
-      this.httpClient.get<TR>(this.apiUrl, { headers }).subscribe(
+      this.httpClient.get<TR>(this.apiUrl+params, { headers }).subscribe(
         (response: TR) => {
           resolve(response);
         },
@@ -57,7 +56,7 @@ export class BaseAPI {
           resolve(response);
         },
         (error) => {
-          reject(`${error.error.data?.message || 'Erro desconhecido'}`);
+          reject(`${error?.message || 'Erro desconhecido'}`);
         }
       );
     });

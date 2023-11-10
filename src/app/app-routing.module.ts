@@ -17,10 +17,7 @@ const routes: Routes = [
       import('./pages/pages.module').then((m) => m.PagesModule),
     canActivate: [AuthGuardService],
   },
-  {
-    path: 'mars-weather-panel',
-    component: MarsWeatherPanelComponent,
-  },
+  { path: 'mars-weather-panel', component: MarsWeatherPanelComponent },
   { path: '**', redirectTo: 'auth' },
 ];
 

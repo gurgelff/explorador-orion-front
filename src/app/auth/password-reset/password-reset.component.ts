@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
-import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { NgIf } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
-import { ModalService } from 'src/app/core/services/modal.service';
+import { Router, RouterModule } from '@angular/router';
+import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
+import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
 import { EmailService } from 'src/app/core/services/email.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { ModalService } from 'src/app/core/services/modal.service';
 
 @Component({
   selector: 'app-password-reset',
@@ -30,6 +28,7 @@ export class PasswordResetComponent implements OnInit {
   public errorMessage?: string;
   public emailForm: FormGroup;
   public email!: string;
+
   constructor(
     private forgotPasswordAPI: ForgotPasswordAPI,
     private router: Router,

@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { StorageService } from './../../core/services/storage.service';
+import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
+import { IResponseLogin } from 'src/app/core/models/IResponseLogin';
+import { EmailService } from 'src/app/core/services/email.service';
 import { AuthAPI } from '../../core/api/auth.api';
 import { LoaderService } from '../../core/services/loader.service';
-import { IResponseLogin } from 'src/app/core/models/IResponseLogin';
-import { EnumStorageType } from 'src/app/core/common/enums/enum.storage.type.enum';
-import { EmailService } from 'src/app/core/services/email.service';
+import { StorageService } from './../../core/services/storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
+
 export class LoginComponent {
   public hide = true;
   public errorMessage?: string;

@@ -1,0 +1,30 @@
+.mars-weather {
+  padding: 80px 80px;
+}
+
+.weather-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.weather-title {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .mat-typography p {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.back-arrow {
+  margin-right: 32px;
+  visibility: hidden;
+}
+
+.main-card {
+  display: flex;
+  justify-content: center;
+  margin: 80px;
+}

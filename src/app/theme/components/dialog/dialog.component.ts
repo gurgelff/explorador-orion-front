@@ -7,6 +7,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
+  /**
+   * Construtor do componente DialogComponent.
+   *
+   * @param dialogRef - Referência para o diálogo atual.
+   * @param data - Dados a serem exibidos no diálogo, incluindo feedback, título, mensagem e uma função opcional.
+   */
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -18,10 +24,18 @@ export class DialogComponent {
     }
   ) {}
 
+  /**
+   * Método para fechar o diálogo.
+   */
+
   public cancel(): void {
     this.dialogRef.close();
   }
 
+  /**
+   * Método para lidar com o clique no botão do diálogo.
+   * Executa a função `onClick` se estiver definida e, em seguida, fecha o diálogo.
+   */
   public onClick(): void {
     if (this.data.onClick) {
       this.data.onClick();
