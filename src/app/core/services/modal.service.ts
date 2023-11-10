@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DialogComponent } from 'src/app/theme/components/dialog/dialog.component';
+import { DialogComponent } from '../../theme/components/dialog/dialog.component';
 
 @Injectable({
   providedIn: 'root',
