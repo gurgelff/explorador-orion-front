@@ -27,6 +27,7 @@ import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation,
 
 export class NewPasswordComponent implements OnInit {
   public formNewPassword: FormGroup;
+  public hideFirstPass = false;
   public hideSecondPass = true;
   public specialCharTheme = '';
   public errorMessage = '';
