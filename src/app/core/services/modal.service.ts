@@ -1,38 +1,38 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { DialogComponent } from 'src/app/theme/components/dialog/dialog.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ModalService implements OnDestroy {
-  private dialogListener$: Subscription = Subscription.EMPTY;
+export class ModalService {
+  private destroy$ = new Subject<void>();
 
   constructor(private dialog: MatDialog, private router: Router) {}
 
-  /**
-   * Exibe um modal de sucesso com a resposta fornecida e redireciona para a página de login após o fechamento do modal.
-   *
-   * @param response A mensagem de resposta a ser exibida no modal de sucesso.
-   */
-  public showSuccessDialog(response: string): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: { response: response },
-    });
-
-    this.dialogListener$ = dialogRef.afterClosed().subscribe(() => {
-      this.router.navigate(['/login']);
-    });
+  private closeDialog(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  /**
-   * Implementação do método `ngOnDestroy` para o serviço ModalService.
-   * Chamado quando o serviço está prestes a ser destruído.
-   * Realiza a desinscrição do dialogListener$.
-   */
-  public ngOnDestroy(): void {
-    this.dialogListener$.unsubscribe();
+  public showDialog(data: {
+    feedback: 'success' | 'error';
+    title: string;
+    message: string;
+    onClick?: () => void;
+  }): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data,
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.closeDialog();
+      });
   }
 }

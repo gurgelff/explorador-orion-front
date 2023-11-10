@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
 
 @Component({
   selector: 'app-dialog',
@@ -10,14 +9,23 @@ import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordFo
 export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IResponsePasswordForgot
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      feedback: 'success' | 'error';
+      title: string;
+      message: string;
+      onClick?: () => void;
+    }
   ) {}
 
-  /**
-   * Este método é usado para fechar o modal, removendo-o da interface do usuário.
-   *
-   */
   public cancel(): void {
     this.dialogRef.close();
+  }
+
+  public onClick(): void {
+    if (this.data.onClick) {
+      this.data.onClick();
+    }
+    this.cancel();
   }
 }

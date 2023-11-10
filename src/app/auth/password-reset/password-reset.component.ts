@@ -72,7 +72,11 @@ export class PasswordResetComponent implements OnInit {
     this.forgotPasswordAPI
       .passwordReset(this.emailForm.value)
       .then((response: IResponsePasswordForgot) => {
-        this.modalService.showSuccessDialog(response.data.message);
+        this.modalService.showDialog({
+          title: 'Sucesso',
+          message: 'message',
+          feedback: 'success',
+        });
       })
       .catch((error) => {
         this.errorMessage = error;

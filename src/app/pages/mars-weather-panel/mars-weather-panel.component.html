@@ -1,7 +1,9 @@
-<app-page-title
-  [title]="'Meteorologia em Marte'"
-  [subtitle]="'Veja abaixo as temperaturas registradas até o momento.'"
-></app-page-title>
-<app-logout></app-logout>
-<app-carousel [weatherCards]="weatherCards"></app-carousel>
-<app-card-principal [weatherCard]="weatherCards[0]"></app-card-principal>
+<div *ngIf="weatherCards.length">
+  <app-page-title
+    [title]="'Meteorologia em Marte'"
+    [subtitle]="'Veja abaixo as temperaturas registradas até o momento.'"
+  ></app-page-title>
+  <app-logout></app-logout>
+  <app-carousel [weatherCards]="weatherCards"></app-carousel>
+  <app-card-principal [weatherCard]="weatherCards[0]"></app-card-principal>
+</div>
