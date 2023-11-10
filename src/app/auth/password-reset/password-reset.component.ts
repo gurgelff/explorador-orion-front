@@ -69,7 +69,7 @@ export class PasswordResetComponent implements OnInit {
   public onSubmit(): void {
     this.loaderService.setLoading(true);
     this.forgotPasswordAPI
-      .passwordReset(this.emailForm.value)
+      .passwordReset(this.emailForm.value.email)
       .then((response: IResponsePasswordForgot) => {
         this.modalService.showSuccessDialog(response.data.message);
       })
