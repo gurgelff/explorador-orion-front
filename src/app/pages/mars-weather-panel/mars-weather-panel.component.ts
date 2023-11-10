@@ -45,8 +45,7 @@ export class MarsWeatherPanelComponent implements OnInit {
           this.weatherCards.reverse();
         }
       })
-      .catch((error) => {
-        console.log('Erro na conexão com a API de clima de Marte', error);
+      .catch(() => {
         this.ModalService.showDialog({
           title: 'Falha na conexão',
           message: 'Não foi possível conectar-se à API de clima de Marte.',
