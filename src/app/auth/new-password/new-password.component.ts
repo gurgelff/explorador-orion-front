@@ -27,7 +27,7 @@ import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation,
 
 export class NewPasswordComponent implements OnInit {
   public formNewPassword: FormGroup;
-  public hideFirstPass = false;
+  public hideFirstPass = true;
   public hideSecondPass = true;
   public specialCharTheme = '';
   public errorMessage = '';
@@ -51,16 +51,25 @@ export class NewPasswordComponent implements OnInit {
       password: new FormControl(
         '',
         [
-          noSpaces(),
-          hasEnoughLetters(),
-          specialLetterValidation(),
-          upperCaseValidation(),
-          numbersValidation(),
+          noSpaces('password'),
+          hasEnoughLetters('password'),
+          specialLetterValidation('password'),
+          upperCaseValidation('password'),
+          numbersValidation('password'),
         ],
       ),
-      passConfirmation: new FormControl('', []),
+      passConfirmation: new FormControl(
+        '', 
+        [
+          noSpaces('passConfirmation'),
+          hasEnoughLetters('passConfirmation'),
+          specialLetterValidation('passConfirmation'),
+          upperCaseValidation('passConfirmation'),
+          numbersValidation('passConfirmation'),
+        ]
+      ),
     }, {
-      validators: this.passwordMatchValidator
+      validator: this.passwordMatchValidator
     });
   }
   
@@ -95,16 +104,12 @@ export class NewPasswordComponent implements OnInit {
   /**
    * Responsável por validar se ambos os campos de input, contém a mesma senha
    * @param formNewPassword Formulário contendo todos dados sobre os inputs de senhas
+   * @returns Um erro que é adicionado ao formGroup ou null
    */
-  private passwordMatchValidator(formNewPassword: FormGroup): void {
+  private passwordMatchValidator(formNewPassword: FormGroup): { [key: string]: boolean } | null {
     const password: string = formNewPassword?.get('password')?.value;
     const passConfirmation: string = formNewPassword?.get('passConfirmation')?.value;
-
-    if (password === passConfirmation) {
-      formNewPassword.get('passConfirmation')?.setErrors(null);
-    } else {
-      formNewPassword.get('passConfirmation')?.setErrors({ passwordMismatch: true });
-    }
+    return password === passConfirmation ? null : { passMissMatch: true};
   }
 
   /**
