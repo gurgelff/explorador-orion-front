@@ -10,6 +10,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
+
 import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
 import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
 import { EmailService } from 'src/app/core/services/email.service';
@@ -75,7 +76,7 @@ export class PasswordResetComponent implements OnInit {
   public onSubmit(): void {
     this.loaderService.setLoading(true);
     this.forgotPasswordAPI
-      .passwordReset(this.emailForm.value)
+      .passwordReset(this.emailForm.value.email)
       .then((response: IResponsePasswordForgot) => {
         this.modalService.showDialog({
           title: 'Sucesso',
@@ -85,6 +86,11 @@ export class PasswordResetComponent implements OnInit {
       })
       .catch((error) => {
         this.errorMessage = error;
+        this.modalService.showDialog({
+          title: 'Falha!',
+          message: error,
+          feedback: 'error',
+        });
       })
       .finally(() => {
         this.loaderService.setLoading(false);

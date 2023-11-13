@@ -30,7 +30,7 @@ export class BaseAPI {
   public get<TR>(params = ''): Promise<TR> {
     const headers = this.setHeaders();
     return new Promise<TR>((resolve, reject) => {
-      this.httpClient.get<TR>(this.apiUrl+params, { headers }).subscribe(
+      this.httpClient.get<TR>(this.apiUrl + params, { headers }).subscribe(
         (response: TR) => {
           resolve(response);
         },
@@ -56,7 +56,8 @@ export class BaseAPI {
           resolve(response);
         },
         (error) => {
-          reject(`${error?.message || 'Erro desconhecido'}`);
+          console.log(error.error);
+          reject(`${error.error.data.message || 'Erro desconhecido'}`);
         }
       );
     });
