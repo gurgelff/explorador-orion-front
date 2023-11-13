@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { PagesModule } from './pages/pages.module';
 import { AuthGuardService } from './core/services/auth-guard.service';
-import { MarsWeatherPanelComponent } from './pages/mars-weather-panel/mars-weather-panel.component';
 
 const routes: Routes = [
   {
@@ -17,7 +16,6 @@ const routes: Routes = [
       import('./pages/pages.module').then((m) => m.PagesModule),
     canActivate: [AuthGuardService],
   },
-  { path: 'mars-weather-panel', component: MarsWeatherPanelComponent },
   { path: '**', redirectTo: 'auth' },
 ];
 
