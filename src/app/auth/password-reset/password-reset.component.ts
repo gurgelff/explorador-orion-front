@@ -1,6 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
@@ -73,7 +79,7 @@ export class PasswordResetComponent implements OnInit {
       .then((response: IResponsePasswordForgot) => {
         this.modalService.showDialog({
           title: 'Sucesso',
-          message: 'message',
+          message: response.data.message,
           feedback: 'success',
         });
       })

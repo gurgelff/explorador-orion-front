@@ -49,7 +49,7 @@ export class MarsWeatherPanelComponent implements OnInit {
         this.ModalService.showDialog({
           title: 'Falha na conexão',
           message: 'Não foi possível conectar-se à API de clima de Marte.',
-          feedback: 'success',
+          feedback: 'error',
         });
       })
       .finally(() => {

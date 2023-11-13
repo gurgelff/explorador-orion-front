@@ -1,5 +1,5 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewPasswordApi } from 'src/app/core/api/new-password.api';
 import { IRequestNewPass } from 'src/app/core/models/IRequestNewPass';
+import { Subscription } from 'rxjs';
 
 import { ModalService } from 'src/app/core/services/modal.service';
 import { LoaderService } from '../../core/services/loader.service';
@@ -35,14 +36,24 @@ import {
     MatIconModule,
   ],
 })
-export class NewPasswordComponent implements OnInit {
+export class NewPasswordComponent implements OnInit, OnDestroy {
   public formNewPassword: FormGroup;
   public hideSecondPass = true;
   public specialCharTheme = '';
   public errorMessage = '';
   private resetToken = '';
   private userId = '';
+  private dialogRefSubscription!: Subscription;
 
+  /**
+   * Construtor do componente de redefinição de senha.
+   * @param activatedRouter - Serviço para obter parâmetros da URL.
+   * @param formBuilder - Serviço para construir formulários reativos.
+   * @param router - Serviço de roteamento do Angular.
+   * @param loaderService - Serviço para controlar o estado de carregamento.
+   * @param resetPassApi - Serviço para interagir com a API de redefinição de senha.
+   * @param modalService - Serviço para exibir diálogos modais.
+   */
   constructor(
     private activatedRouter: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -82,6 +93,15 @@ export class NewPasswordComponent implements OnInit {
   }
 
   /**
+   * Executa ações de limpeza e desinscrição de observáveis ao destruir o componente.
+   */
+  ngOnDestroy(): void {
+    if (this.dialogRefSubscription) {
+      this.dialogRefSubscription.unsubscribe();
+    }
+  }
+
+  /**
    * Ao carregar a página, essa função é chamada no ngOnInit
    * Ela é responsável por validar o token fazendo uma
    * requisição no backend na rota /reset/password/:id/:token
@@ -92,13 +112,21 @@ export class NewPasswordComponent implements OnInit {
     this.loaderService.setLoading(true);
     this.resetPassApi
       .tokenVerify(this.userId, this.resetToken)
+      .then(() => {
+        // Token válido, a página pode ser carregada
+      })
       .catch((error) => {
         this.errorMessage = error;
-        this.modalService.showDialog({
-          title: 'Falha!',
-          message: 'Senha inválida, tente novamente!',
-          feedback: 'error',
-        });
+        this.modalService
+          .showDialog({
+            title: 'Falha!',
+            message: error,
+            feedback: 'error',
+          })
+          .afterClosed()
+          .subscribe(() => {
+            this.router.navigate(['/login']);
+          });
       })
       .finally(() => {
         this.loaderService.setLoading(false);
@@ -167,6 +195,9 @@ export class NewPasswordComponent implements OnInit {
           feedback: 'success',
           title: 'Sucesso',
           message: 'Senha alterada com sucesso!',
+          onClick: () => {
+            this.router.navigate(['/login']);
+          },
         });
       })
       .catch((error) => {
