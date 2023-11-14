@@ -88,17 +88,23 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: url(../../../assets/images/background1.png) no-repeat center center fixed;
-  background-size: cover;
   background-color: black;
   color: white;
 }
 
-.moon-centered-large-background {
-  background: url(../../../assets/images/background3.png) no-repeat center center fixed;
+.moon-right-large-background {
+  background: url(../../../assets/images/background1.png) no-repeat center
+    center fixed;
   background-size: cover;
-  background-color: black;
-  opacity: 0.35;
+  background-color: rgba(107, 159, 223, 0.081);
+}
+
+.moon-centered-large-background {
+  background: url(../../../assets/images/background3.png) no-repeat center
+    center fixed;
+  background-size: cover;
+  background-color: rgba(107, 159, 223, 0.081);
+  height: 100%;
 }
 
 p,
