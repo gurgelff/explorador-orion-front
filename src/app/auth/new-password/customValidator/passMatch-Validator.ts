@@ -3,11 +3,10 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 /**
  * Valida se existe algum espaço dentro do campo de password
  */
-export function noSpaces(): ValidatorFn {
+export function noSpaces(inputIdentifier: string): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean} | null => {
     const formGroup = newPassFormControl.parent;    
-    const password = formGroup?.get('password');
-
+    const password = formGroup?.get(inputIdentifier);
     if (password?.value.match(/\s/)) {
       return { noSpacesError: true };
     }
@@ -19,10 +18,10 @@ export function noSpaces(): ValidatorFn {
 /**
  * Valida se existe pelo menos uma letra maiuscula
  */
-export function upperCaseValidation(): ValidatorFn {
+export function upperCaseValidation(inputIdentifier: string): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;
-    const password = formGroup?.get('password');
+    const password = formGroup?.get(inputIdentifier);
 
     if (!password?.value.match(/[A-Z]/)) {
       return { upperCaseError: true };
@@ -35,10 +34,10 @@ export function upperCaseValidation(): ValidatorFn {
 /**
  * Valida se existe pelo menos um caractere especial
  */
-export function specialLetterValidation(): ValidatorFn {
+export function specialLetterValidation(inputIdentifier: string): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;
-    const password = formGroup?.get('password');
+    const password = formGroup?.get(inputIdentifier);
 
     if (!password?.value.match(/[^A-Za-z0-9]/g)) {
       return { specialLetterError: true };
@@ -51,10 +50,10 @@ export function specialLetterValidation(): ValidatorFn {
 /**
  * Valida se existe pelo menos um número
  */
-export function numbersValidation(): ValidatorFn {
+export function numbersValidation(inputIdentifier: string): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;
-    const password = formGroup?.get('password');
+    const password = formGroup?.get(inputIdentifier);
 
     if (!password?.value.match(/[0-9]/g)) {
       return { numbersError: true };
@@ -67,11 +66,10 @@ export function numbersValidation(): ValidatorFn {
 /**
  * Valida se a senha contém pelo menos 8 caracteres
  */
-export function hasEnoughLetters(): ValidatorFn {
+export function hasEnoughLetters(inputIdentifier: string): ValidatorFn {
   return (newPassFormControl: AbstractControl): { [key: string]: boolean } | null => {
     const formGroup = newPassFormControl.parent;
-    const password = formGroup?.get('password');
-
+    const password = formGroup?.get(inputIdentifier);
     if (!(password?.value.length >= 8)) {
       return { passwordSizeError: true };
     }

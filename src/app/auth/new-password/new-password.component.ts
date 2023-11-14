@@ -38,6 +38,7 @@ import {
 })
 export class NewPasswordComponent implements OnInit, OnDestroy {
   public formNewPassword: FormGroup;
+  public hideFirstPass = true;
   public hideSecondPass = true;
   public specialCharTheme = '';
   public errorMessage = '';
@@ -67,21 +68,31 @@ export class NewPasswordComponent implements OnInit, OnDestroy {
     this.userId = this.activatedRouter.snapshot.params['id'];
     this.resetToken = this.activatedRouter.snapshot.params['reset-token'];
 
-    this.formNewPassword = this.formBuilder.group(
-      {
-        password: new FormControl('', [
-          noSpaces(),
-          hasEnoughLetters(),
-          specialLetterValidation(),
-          upperCaseValidation(),
-          numbersValidation(),
-        ]),
-        passConfirmation: new FormControl('', []),
-      },
-      {
-        validators: this.passwordMatchValidator,
-      }
-    );
+
+    this.formNewPassword = this.formBuilder.group({
+      password: new FormControl(
+        '',
+        [
+          noSpaces('password'),
+          hasEnoughLetters('password'),
+          specialLetterValidation('password'),
+          upperCaseValidation('password'),
+          numbersValidation('password'),
+        ],
+      ),
+      passConfirmation: new FormControl(
+        '', 
+        [
+          noSpaces('passConfirmation'),
+          hasEnoughLetters('passConfirmation'),
+          specialLetterValidation('passConfirmation'),
+          upperCaseValidation('passConfirmation'),
+          numbersValidation('passConfirmation'),
+        ]
+      ),
+    }, {
+      validator: this.passwordMatchValidator
+    });
   }
 
   /**
@@ -136,19 +147,14 @@ export class NewPasswordComponent implements OnInit, OnDestroy {
   /**
    * Responsável por validar se ambos os campos de input, contém a mesma senha
    * @param formNewPassword Formulário contendo todos dados sobre os inputs de senhas
+   * @returns Um erro que é adicionado ao formGroup ou null
    */
-  private passwordMatchValidator(formNewPassword: FormGroup): void {
+  private passwordMatchValidator(formNewPassword: FormGroup): { [key: string]: boolean } | null {
     const password: string = formNewPassword?.get('password')?.value;
-    const passConfirmation: string =
-      formNewPassword?.get('passConfirmation')?.value;
 
-    if (password === passConfirmation) {
-      formNewPassword.get('passConfirmation')?.setErrors(null);
-    } else {
-      formNewPassword
-        .get('passConfirmation')
-        ?.setErrors({ passwordMismatch: true });
-    }
+    const passConfirmation: string = formNewPassword?.get('passConfirmation')?.value;
+    return password === passConfirmation ? null : { passMissMatch: true};
+
   }
 
   /**
