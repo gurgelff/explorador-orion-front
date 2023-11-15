@@ -11,6 +11,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -18,6 +19,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     CommonModule,
     NewPasswordComponent,
     PasswordResetComponent,
+    SignUpComponent,
     AuthRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
