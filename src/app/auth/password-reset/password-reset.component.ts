@@ -1,9 +1,16 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
+
 import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
 import { IResponsePasswordForgot } from 'src/app/core/models/IResponsePasswordForgot';
 import { EmailService } from 'src/app/core/services/email.service';
@@ -71,10 +78,19 @@ export class PasswordResetComponent implements OnInit {
     this.forgotPasswordAPI
       .passwordReset(this.emailForm.value.email)
       .then((response: IResponsePasswordForgot) => {
-        this.modalService.showSuccessDialog(response.data.message);
+        this.modalService.showDialog({
+          title: 'Sucesso',
+          message: response.data.message,
+          feedback: 'success',
+        });
       })
       .catch((error) => {
         this.errorMessage = error;
+        this.modalService.showDialog({
+          title: 'Falha!',
+          message: error,
+          feedback: 'error',
+        });
       })
       .finally(() => {
         this.loaderService.setLoading(false);
