@@ -2,7 +2,7 @@
   <div class="weather-info">
     <div class="weather-title">
       <a class="back-arrow">
-        <img src="../../../assets/images/back-arrow.png" alt="Voltar" />
+        <img src="../../../assets/images/back-arrow.png" alt="Voltar" (click)="goBack()" tabindex="0" (keydown)="handleKeyDown($event)" />
       </a>
       <app-page-title
         [title]="'Meteorologia em Marte'"

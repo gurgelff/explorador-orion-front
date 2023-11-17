@@ -4,6 +4,7 @@ import { IWeatherCard } from 'src/app/core/models/IWeatherCard';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { WeatherAPIService } from 'src/app/core/api/weather.api';
 import { ModalService } from 'src/app/core/services/modal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mars-weather-panel',
@@ -17,7 +18,8 @@ export class MarsWeatherPanelComponent implements OnInit {
   constructor(
     private weatherAPIService: WeatherAPIService,
     private loaderService: LoaderService,
-    private ModalService: ModalService
+    private ModalService: ModalService,
+    private router: Router
   ) {}
 
   /**
@@ -28,6 +30,13 @@ export class MarsWeatherPanelComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.getTemperatureData();
+  }
+
+  /**
+   * Navega de volta para a página home.
+   */
+  public goBack(): void {
+    this.router.navigate(['pages/home']);
   }
 
   /**
@@ -47,7 +56,10 @@ export class MarsWeatherPanelComponent implements OnInit {
         }
       })
       .catch((error) => {
-        this.errorMessage = (error.error && error.error.message) ? error.error.message : 'Não foi possível conectar-se à API de clima de Marte.';
+        this.errorMessage =
+          error.error && error.error.message
+            ? error.error.message
+            : 'Não foi possível conectar-se à API de clima de Marte.';
         this.ModalService.showDialog({
           title: 'Falha',
           message: this.errorMessage,
@@ -57,5 +69,15 @@ export class MarsWeatherPanelComponent implements OnInit {
       .finally(() => {
         this.loaderService.setLoading(false);
       });
+  }
+
+  /**
+   * Lida com eventos de teclado (Enter ou Espaço) para navegar para home quando uma tecla é pressionada.
+   * @param event O evento de teclado gerado pelo usuário.
+   */
+  public handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.goBack();
+    }
   }
 }

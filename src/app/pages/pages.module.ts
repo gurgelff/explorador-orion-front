@@ -10,6 +10,7 @@ import { PageTitleComponent } from '../theme/components/page-title/page-title.co
 import { CarouselComponent } from '../theme/components/carousel/carousel.component';
 import { DatePipe } from '../core/common/pipes/date.pipe';
 import { CardPrincipalComponent } from '../theme/components/card-principal/card-principal.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CardPrincipalComponent } from '../theme/components/card-principal/card-
     CardPrincipalComponent,
     CarouselComponent,
     DatePipe,
+    HomeComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, SwiperModule],
 })
