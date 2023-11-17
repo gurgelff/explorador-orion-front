@@ -5,12 +5,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { NewUserAPI } from 'src/app/core/api/new-user.api.ts';
 import { IRegisterRequestBody } from 'src/app/core/models/iRegisterRequest';
 import { IRegisterResponse } from 'src/app/core/models/iRegisterResponse';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { LoaderService } from '../../core/services/loader.service';
 import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation, upperCaseValidation } from '../new-password/customValidator/passMatch-Validator';
+import { NewUserAPI } from 'src/app/core/api/new-user.api';
 
 @Component({
   selector: 'app-sign-up',
@@ -33,7 +33,7 @@ export class SignUpComponent {
   public hideFirstPass = true;
   public hideSecondPass = true;
   public specialCharTheme = '';
-  public errorMessage = '';
+  public errorMessage!: string;
   
   constructor(
     private formBuilder: FormBuilder, 
@@ -114,12 +114,20 @@ export class SignUpComponent {
     this.loaderService.setLoading(true);
     this.newUserAPI
       .register(userData)
-        .then((response: IRegisterResponse) => {
-          this.modalService.showSuccessDialog(response.data.message)
+      .then((response: IRegisterResponse) => {
+        this.modalService.showDialog({
+          title: 'Sucesso',
+          message: response.data.message,
+          feedback: 'success',
+        });
       })
       .catch((error) => {
-        this.errorMessage = error;
-        this.modalService.showSuccessDialog(this.errorMessage)
+        this.errorMessage = (error.error && error.error.message) ? error.error.message : 'Erro desconhecido';
+        this.modalService.showDialog({
+          title: 'Falha!',
+          message: this.errorMessage,
+          feedback: 'error',
+        });
       })
       .finally(() => {
         this.loaderService.setLoading(false);

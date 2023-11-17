@@ -56,8 +56,7 @@ export class BaseAPI {
           resolve(response);
         },
         (error) => {
-          console.log(error.error);
-          reject(`${error.error.data.message || 'Erro desconhecido'}`);
+          reject(error);
         }
       );
     });

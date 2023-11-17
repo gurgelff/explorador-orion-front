@@ -207,11 +207,11 @@ export class NewPasswordComponent implements OnInit, OnDestroy {
         });
       })
       .catch((error) => {
-        this.errorMessage = error;
+        this.errorMessage = (error.error && error.error.data && error.error.data.message) ? error.error.data.message : 'Erro desconhecido';
         this.modalService.showDialog({
           feedback: 'error',
           title: 'Erro',
-          message: error,
+          message: this.errorMessage,
         });
       })
       .finally(() => {

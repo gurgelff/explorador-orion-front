@@ -12,6 +12,7 @@ import { ModalService } from 'src/app/core/services/modal.service';
 })
 export class MarsWeatherPanelComponent implements OnInit {
   public weatherCards: IWeatherCard[] = [];
+  public errorMessage!: string;
 
   constructor(
     private weatherAPIService: WeatherAPIService,
@@ -45,10 +46,11 @@ export class MarsWeatherPanelComponent implements OnInit {
           this.weatherCards.reverse();
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        this.errorMessage = (error.error && error.error.message) ? error.error.message : 'Não foi possível conectar-se à API de clima de Marte.';
         this.ModalService.showDialog({
-          title: 'Falha na conexão',
-          message: 'Não foi possível conectar-se à API de clima de Marte.',
+          title: 'Falha',
+          message: this.errorMessage,
           feedback: 'error',
         });
       })
