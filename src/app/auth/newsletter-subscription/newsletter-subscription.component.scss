@@ -1,0 +1,80 @@
+@import "../../theme/styles/theme.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.text-info {
+  width: 500px;
+}
+
+.text-info h1 {
+  font-size: 35px;
+  margin-bottom: 8px;
+  margin-left: 0px;
+}
+
+.text-info span {
+  font-size: 13px;
+  margin-left: -1px;
+}
+
+.container-form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.email-input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos comuns para os botões */
+.common-btn-styles {
+  width: 500px;
+  border-radius: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 25px 0;
+}
+
+/* Estilos específicos para o botão de enviar/inscrever-se */
+.send-btn {
+  @extend .common-btn-styles;
+  background-color: var(--foundation-primary, #979797);
+  color: #171717;
+  margin-top: 1.5rem;
+
+  &:disabled {
+    background-color: var(--foundation-primary, #979797);
+    color: #171717;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  &.valid-button-color {
+    color: #ffffff;
+  }
+}
+
+/* Estilos para o botão válido (quando o formulário for válido) */
+.valid-button-color {
+  background-color: var(--foundation-primary, #ba8e73);
+  opacity: 1;
+  color: #ffffff;
+
+  &:disabled {
+    background-color: var(--foundation-primary, #ba8e73);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
