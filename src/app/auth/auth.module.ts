@@ -11,9 +11,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { NewsletterSubscriptionComponent } from './newsletter-subscription/newsletter-subscription.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, NewsletterSubscriptionComponent],
   imports: [
     CommonModule,
     NewPasswordComponent,

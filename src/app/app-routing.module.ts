@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { PagesModule } from './pages/pages.module';
 import { AuthGuardService } from './core/services/auth-guard.service';
+import { NewsletterSubscriptionComponent } from './auth/newsletter-subscription/newsletter-subscription.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
       import('./pages/pages.module').then((m) => m.PagesModule),
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'newsletter-subscription',
+    component: NewsletterSubscriptionComponent,
+  },
+  // { path: '', redirectTo: '/newsletter-subscription', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth' },
 ];
 
