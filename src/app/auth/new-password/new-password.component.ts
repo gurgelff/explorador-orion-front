@@ -41,7 +41,6 @@ export class NewPasswordComponent implements OnInit, OnDestroy {
   public hideFirstPass = true;
   public hideSecondPass = true;
   public specialCharTheme = '';
-  public errorMessage = '';
   private resetToken = '';
   private userId = '';
   private dialogRefSubscription!: Subscription;
@@ -127,7 +126,6 @@ export class NewPasswordComponent implements OnInit, OnDestroy {
         // Token válido, a página pode ser carregada
       })
       .catch((error) => {
-        this.errorMessage = error;
         this.modalService
           .showDialog({
             title: 'Falha!',
@@ -207,11 +205,10 @@ export class NewPasswordComponent implements OnInit, OnDestroy {
         });
       })
       .catch((error) => {
-        this.errorMessage = (error.error && error.error.data && error.error.data.message) ? error.error.data.message : 'Erro desconhecido';
         this.modalService.showDialog({
           feedback: 'error',
           title: 'Erro',
-          message: this.errorMessage,
+          message: error,
         });
       })
       .finally(() => {

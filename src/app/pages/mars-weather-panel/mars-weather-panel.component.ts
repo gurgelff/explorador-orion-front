@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class MarsWeatherPanelComponent implements OnInit {
   public weatherCards: IWeatherCard[] = [];
-  public errorMessage!: string;
 
   constructor(
     private weatherAPIService: WeatherAPIService,
@@ -56,28 +55,14 @@ export class MarsWeatherPanelComponent implements OnInit {
         }
       })
       .catch((error) => {
-        this.errorMessage =
-          error.error && error.error.message
-            ? error.error.message
-            : 'Não foi possível conectar-se à API de clima de Marte.';
         this.ModalService.showDialog({
           title: 'Falha',
-          message: this.errorMessage,
+          message: error,
           feedback: 'error',
         });
       })
       .finally(() => {
         this.loaderService.setLoading(false);
       });
-  }
-
-  /**
-   * Lida com eventos de teclado (Enter ou Espaço) para navegar para home quando uma tecla é pressionada.
-   * @param event O evento de teclado gerado pelo usuário.
-   */
-  public handleKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' || event.key === ' ') {
-      this.goBack();
-    }
   }
 }

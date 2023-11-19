@@ -55,7 +55,7 @@ export class LoginComponent {
         this.router.navigate(['/pages']);
       })
       .catch((error) => {
-        this.errorMessage = (error.error && error.error.data && error.error.data.message) ? error.error.data.message : 'Erro desconhecido';
+        this.errorMessage = error;
       })
       .finally(() => {
         this.loaderService.setLoading(false);
