@@ -9,8 +9,8 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  { 
-    path: 'reset-password/:id/:reset-token', 
+  {
+    path: 'reset-password/:id/:reset-token',
     component: NewPasswordComponent,
   },
   {
@@ -18,7 +18,6 @@ const routes: Routes = [
     component: PasswordResetComponent,
   },
   { path: '**', redirectTo: 'login' },
-
 ];
 
 @NgModule({
