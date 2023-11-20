@@ -11,12 +11,14 @@
     </div>
     <app-logout></app-logout>
   </div>
-  <app-card-principal
-    [weatherCard]="weatherCards[weatherCards.length - 1]"
-    class="main-card"
-  ></app-card-principal>
-  <app-carousel
-    class="cards-carousel"
-    [weatherCards]="weatherCards"
-  ></app-carousel>
+  <div *ngIf="weatherCards.length">
+    <app-card-principal
+      [weatherCard]="weatherCards[weatherCards.length - 1]"
+      class="main-card"
+    ></app-card-principal>
+    <app-carousel
+      class="cards-carousel"
+      [weatherCards]="weatherCards"
+    ></app-carousel>
+  </div>
 </div>

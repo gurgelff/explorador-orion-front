@@ -11,7 +11,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { NewsletterSubscriptionComponent } from './newsletter-subscription/newsletter-subscription.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+
 
 @NgModule({
   declarations: [LoginComponent, NewsletterSubscriptionComponent],
@@ -19,6 +20,7 @@ import { NewsletterSubscriptionComponent } from './newsletter-subscription/newsl
     CommonModule,
     NewPasswordComponent,
     PasswordResetComponent,
+    SignUpComponent,
     AuthRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
