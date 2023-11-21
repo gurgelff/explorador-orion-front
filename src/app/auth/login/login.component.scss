@@ -1,5 +1,7 @@
 @import "../../theme/styles/theme.scss";
-
+.moon-right-large-background{
+  height: 120vh;
+}
 h1 {
   font-size: 3rem;
 }
@@ -69,4 +71,8 @@ a {
   background-color: var(--foundation-primary, #ba8e73);
   opacity: 1;
   color: white;
+}
+
+.go-back-sign-up {
+  color: $primary-500
 }
