@@ -32,7 +32,6 @@ import { ModalService } from 'src/app/core/services/modal.service';
   ],
 })
 export class PasswordResetComponent implements OnInit {
-  public errorMessage!: string;
   public emailForm: FormGroup;
   public email!: string;
 
@@ -85,10 +84,9 @@ export class PasswordResetComponent implements OnInit {
         });
       })
       .catch((error) => {
-        this.errorMessage = (error.error && error.error.data && error.error.data.message) ? error.error.data.message : 'Erro desconhecido';
         this.modalService.showDialog({
           title: 'Falha!',
-          message: this.errorMessage,
+          message: error,
           feedback: 'error',
         });
       })
