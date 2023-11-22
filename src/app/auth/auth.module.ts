@@ -12,9 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, ConfirmRegistrationComponent],
   imports: [
     CommonModule,
     NewPasswordComponent,
