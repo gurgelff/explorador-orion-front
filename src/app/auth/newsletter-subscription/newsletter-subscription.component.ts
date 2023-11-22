@@ -43,9 +43,7 @@ export class NewsletterSubscriptionComponent {
   public onSubmit(): void {
     this.loaderService.setLoading(true);
     this.newsletterAPI
-      .post<NewsletterRequest, NewsletterResponse>(
-        this.newsletterForm.value.email
-      )
+      .post<NewsletterRequest, NewsletterResponse>(this.newsletterForm.value)
       .then((response) => {
         this.modalService.showDialog({
           title: 'Sucesso',

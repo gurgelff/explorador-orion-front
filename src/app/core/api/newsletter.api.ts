@@ -11,6 +11,6 @@ export class NewsletterAPI extends BaseAPI {
     protected override storageService: StorageService
   ) {
     super(httpClient, storageService);
-    this.apiUrl += '/forgot-password';
+    this.apiUrl += '/newsletter';
   }
 }
