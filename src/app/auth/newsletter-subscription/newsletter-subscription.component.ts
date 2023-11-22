@@ -40,6 +40,19 @@ export class NewsletterSubscriptionComponent {
     });
   }
 
+  /**
+   * Método responsável por lidar com o envio do formulário de newsletter.
+   *
+   * @returns {void}
+   * @description
+   * Este método primeiro define o indicador de carregamento como verdadeiro,
+   * em seguida, faz uma chamada de API para enviar os dados da newsletter.
+   * Após o envio bem-sucedido, exibe uma mensagem de sucesso modal.
+   * Em caso de erro, exibe uma mensagem de erro modal.
+   * Finalmente, redefine o indicador de carregamento como falso.
+   *
+   * @param {NewsletterRequest} newsletterForm.value - Dados da newsletter a serem enviados.
+   */
   public onSubmit(): void {
     this.loaderService.setLoading(true);
     this.newsletterAPI
