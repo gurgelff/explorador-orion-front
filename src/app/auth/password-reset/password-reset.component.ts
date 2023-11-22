@@ -32,7 +32,6 @@ import { ModalService } from 'src/app/core/services/modal.service';
   ],
 })
 export class PasswordResetComponent implements OnInit {
-  public errorMessage?: string;
   public emailForm: FormGroup;
   public email!: string;
 
@@ -85,7 +84,6 @@ export class PasswordResetComponent implements OnInit {
         });
       })
       .catch((error) => {
-        this.errorMessage = error;
         this.modalService.showDialog({
           title: 'Falha!',
           message: error,

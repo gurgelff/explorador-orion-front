@@ -56,8 +56,13 @@ export class BaseAPI {
           resolve(response);
         },
         (error) => {
-          console.log(error.error);
-          reject(`${error.error.data.message || 'Erro desconhecido'}`);
+          reject(
+            error.error && error.error.data && error.error.data.message
+              ? error.error.data.message
+              : error.error && error.error.message
+              ? error.error.message
+              : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.'
+          );
         }
       );
     });

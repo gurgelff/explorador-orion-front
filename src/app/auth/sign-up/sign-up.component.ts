@@ -10,12 +10,11 @@ import {
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
-// import { NewUserAPI } from 'src/app/core/api/new-user.api.ts';
+import { Router, RouterModule } from '@angular/router';
 import { IRegisterRequestBody } from 'src/app/core/models/iRegisterRequest';
-// import { IRegisterResponse } from 'src/app/core/models/iRegisterResponse';
-// import { ModalService } from 'src/app/core/services/modal.service';
-// import { LoaderService } from '../../core/services/loader.service';
+import { IRegisterResponse } from 'src/app/core/models/iRegisterResponse';
+import { ModalService } from 'src/app/core/services/modal.service';
+import { LoaderService } from '../../core/services/loader.service';
 import {
   hasEnoughLetters,
   noSpaces,
@@ -23,6 +22,7 @@ import {
   specialLetterValidation,
   upperCaseValidation,
 } from '../new-password/customValidator/passMatch-Validator';
+import { NewUserAPI } from 'src/app/core/api/new-user.api';
 
 @Component({
   selector: 'app-sign-up',
@@ -44,13 +44,14 @@ export class SignUpComponent {
   public hideFirstPass = true;
   public hideSecondPass = true;
   public specialCharTheme = '';
-  public errorMessage = '';
 
   constructor(
-    private formBuilder: FormBuilder // private loaderService: LoaderService,
-  ) // private modalService: ModalService,
-  // private newUserAPI: NewUserAPI
-  {
+    private formBuilder: FormBuilder,
+    private loaderService: LoaderService,
+    private modalService: ModalService,
+    private newUserAPI: NewUserAPI,
+    private router: Router
+  ) {
     this.formNewUser = this.formBuilder.group(
       {
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -123,20 +124,28 @@ export class SignUpComponent {
    * Responsável por enviar o request com um JSON do tipo IRegisterRequest
    * Que contem, email(string), password(string), confirmPassword(string), isSubscribed(bool) e isVerified(bool)
    */
-  // protected newUserBtnRequest(): void {
-  //   const userData = this.createRequestJson();
-  //   this.loaderService.setLoading(true);
-  //   this.newUserAPI
-  //     .register(userData)
-  //       .then((response: IRegisterResponse) => {
-  //         this.modalService.showDialog(response.data.message)
-  //     })
-  //     .catch((error) => {
-  //       this.errorMessage = error;
-  //       this.modalService.showSuccessDialog(this.errorMessage)
-  //     })
-  //     .finally(() => {
-  //       this.loaderService.setLoading(false);
-  //     });
-  // }
+  protected newUserBtnRequest(): void {
+    const userData = this.createRequestJson();
+    this.loaderService.setLoading(true);
+    this.newUserAPI
+      .post<IRegisterRequestBody, IRegisterResponse>(userData)
+      .then((response) => {
+        this.modalService.showDialog({
+          title: 'Sucesso',
+          message: response.data.message,
+          feedback: 'success',
+        });
+        this.router.navigate(['/login']);
+      })
+      .catch((error) => {
+        this.modalService.showDialog({
+          title: 'Falha!',
+          message: error,
+          feedback: 'error',
+        });
+      })
+      .finally(() => {
+        this.loaderService.setLoading(false);
+      });
+  }
 }
