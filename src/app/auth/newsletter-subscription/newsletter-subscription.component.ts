@@ -1,24 +1,39 @@
-import { BaseAPI } from './../../core/api/base.api';
+import { NewsletterAPI } from '../../core/api/newsletter.api';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ModalService } from '../../../app/core/services/modal.service';
 import { NewsletterRequest } from '../../../app/core/models/INewsletterRequest';
 import { NewsletterResponse } from '../../../app/core/models/INewsletterResponse';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-newsletter-subscription',
   templateUrl: './newsletter-subscription.component.html',
   styleUrls: ['./newsletter-subscription.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
 })
 export class NewsletterSubscriptionComponent {
-  newsletterForm!: FormGroup;
+  public newsletterForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private modalService: ModalService,
     private loaderService: LoaderService,
-    private baseAPI: BaseAPI
+    private newsletterAPI: NewsletterAPI
   ) {
     this.newsletterForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,7 +42,7 @@ export class NewsletterSubscriptionComponent {
 
   public onSubmit(): void {
     this.loaderService.setLoading(true);
-    this.baseAPI
+    this.newsletterAPI
       .post<NewsletterRequest, NewsletterResponse>(
         this.newsletterForm.value.email
       )

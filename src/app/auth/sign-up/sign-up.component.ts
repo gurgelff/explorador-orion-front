@@ -1,16 +1,28 @@
-import { CommonModule, NgIf, } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { NewUserAPI } from 'src/app/core/api/new-user.api.ts';
+// import { NewUserAPI } from 'src/app/core/api/new-user.api.ts';
 import { IRegisterRequestBody } from 'src/app/core/models/iRegisterRequest';
-import { IRegisterResponse } from 'src/app/core/models/iRegisterResponse';
-import { ModalService } from 'src/app/core/services/modal.service';
-import { LoaderService } from '../../core/services/loader.service';
-import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation, upperCaseValidation } from '../new-password/customValidator/passMatch-Validator';
+// import { IRegisterResponse } from 'src/app/core/models/iRegisterResponse';
+// import { ModalService } from 'src/app/core/services/modal.service';
+// import { LoaderService } from '../../core/services/loader.service';
+import {
+  hasEnoughLetters,
+  noSpaces,
+  numbersValidation,
+  specialLetterValidation,
+  upperCaseValidation,
+} from '../new-password/customValidator/passMatch-Validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,62 +39,57 @@ import { hasEnoughLetters, noSpaces, numbersValidation, specialLetterValidation,
     MatIconModule,
   ],
 })
-
 export class SignUpComponent {
   public formNewUser: FormGroup;
   public hideFirstPass = true;
   public hideSecondPass = true;
   public specialCharTheme = '';
   public errorMessage = '';
-  
-  constructor(
-    private formBuilder: FormBuilder, 
-    private loaderService: LoaderService,
-    private modalService: ModalService,
-    private newUserAPI: NewUserAPI,
-  ) {
 
-    this.formNewUser = this.formBuilder.group({
-      email: new FormControl(
-        '',
-        [Validators.required, Validators.email]
-      ),
-      password: new FormControl(
-        '',
-        [
+  constructor(
+    private formBuilder: FormBuilder // private loaderService: LoaderService,
+  ) // private modalService: ModalService,
+  // private newUserAPI: NewUserAPI
+  {
+    this.formNewUser = this.formBuilder.group(
+      {
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [
           noSpaces('password'),
           hasEnoughLetters('password'),
           specialLetterValidation('password'),
           upperCaseValidation('password'),
           numbersValidation('password'),
-        ],
-      ),
-      passConfirmation: new FormControl(
-        '', 
-        [
+        ]),
+        passConfirmation: new FormControl('', [
           noSpaces('passConfirmation'),
           hasEnoughLetters('passConfirmation'),
           specialLetterValidation('passConfirmation'),
           upperCaseValidation('passConfirmation'),
           numbersValidation('passConfirmation'),
-        ]
-      ),
-      isNewsletterEnabled: new FormControl(true),
-    }, {
-      validator: this.passwordMatchValidator
-    });
+        ]),
+        isNewsletterEnabled: new FormControl(true),
+      },
+      {
+        validator: this.passwordMatchValidator,
+      }
+    );
   }
-
 
   /**
    * Responsável por validar se ambos os campos de input, contém a mesma senha
    * @param formNewUser Formulário contendo todos dados sobre os inputs de senhas
    * @returns Um erro que é adicionado ao formGroup ou null
    */
-  private passwordMatchValidator(formNewUser: FormGroup): { [key: string]: boolean } | null {
+  private passwordMatchValidator(
+    formNewUser: FormGroup
+  ): { [key: string]: boolean } | null {
     const password: string = formNewUser?.get('password')?.value;
-    const passConfirmation: string = formNewUser?.get('passConfirmation')?.value;
-    return password === passConfirmation && password !== '' ? null : { passMissMatch: true};
+    const passConfirmation: string =
+      formNewUser?.get('passConfirmation')?.value;
+    return password === passConfirmation && password !== ''
+      ? null
+      : { passMissMatch: true };
   }
 
   /**
@@ -91,17 +98,24 @@ export class SignUpComponent {
    * @returns Um json contendo todos os dados para fazer requisição post na rota /sign-up
    */
   private createRequestJson(): IRegisterRequestBody {
-    const email: string = this.formNewUser?.get('email')?.value.replace(/\s/g, "");
-    const password: string = this.formNewUser?.get('password')?.value.replace(/\s/g, "");
-    const confirmPassword: string = this.formNewUser?.get('passConfirmation')?.value.replace(/\s/g, "");
-    const newsletterCheckbox = this.formNewUser?.get('isNewsletterEnabled')?.value || false;
+    const email: string = this.formNewUser
+      ?.get('email')
+      ?.value.replace(/\s/g, '');
+    const password: string = this.formNewUser
+      ?.get('password')
+      ?.value.replace(/\s/g, '');
+    const confirmPassword: string = this.formNewUser
+      ?.get('passConfirmation')
+      ?.value.replace(/\s/g, '');
+    const newsletterCheckbox =
+      this.formNewUser?.get('isNewsletterEnabled')?.value || false;
     const userData: IRegisterRequestBody = {
       email,
       password,
       confirmPassword,
       isSubscribed: newsletterCheckbox,
       isVerified: false,
-    }
+    };
     return userData;
   }
 
@@ -109,20 +123,20 @@ export class SignUpComponent {
    * Responsável por enviar o request com um JSON do tipo IRegisterRequest
    * Que contem, email(string), password(string), confirmPassword(string), isSubscribed(bool) e isVerified(bool)
    */
-  protected newUserBtnRequest(): void {
-    const userData = this.createRequestJson();
-    this.loaderService.setLoading(true);
-    this.newUserAPI
-      .register(userData)
-        .then((response: IRegisterResponse) => {
-          this.modalService.showSuccessDialog(response.data.message)
-      })
-      .catch((error) => {
-        this.errorMessage = error;
-        this.modalService.showSuccessDialog(this.errorMessage)
-      })
-      .finally(() => {
-        this.loaderService.setLoading(false);
-      });
-  }
+  // protected newUserBtnRequest(): void {
+  //   const userData = this.createRequestJson();
+  //   this.loaderService.setLoading(true);
+  //   this.newUserAPI
+  //     .register(userData)
+  //       .then((response: IRegisterResponse) => {
+  //         this.modalService.showDialog(response.data.message)
+  //     })
+  //     .catch((error) => {
+  //       this.errorMessage = error;
+  //       this.modalService.showSuccessDialog(this.errorMessage)
+  //     })
+  //     .finally(() => {
+  //       this.loaderService.setLoading(false);
+  //     });
+  // }
 }
