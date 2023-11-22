@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IWeatherCard } from 'src/app/core/models/IWeatherCard';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { WeatherAPIService } from 'src/app/core/api/weather.api';
+import { ModalService } from 'src/app/core/services/modal.service';
 
 @Component({
   selector: 'app-mars-weather-panel',
@@ -10,11 +11,12 @@ import { WeatherAPIService } from 'src/app/core/api/weather.api';
   styleUrls: ['./mars-weather-panel.component.scss'],
 })
 export class MarsWeatherPanelComponent implements OnInit {
-  public weatherCards!: IWeatherCard[];
+  public weatherCards: IWeatherCard[] = [];
 
   constructor(
     private weatherAPIService: WeatherAPIService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private ModalService: ModalService
   ) {}
 
   /**
@@ -42,6 +44,13 @@ export class MarsWeatherPanelComponent implements OnInit {
           this.weatherCards = response.data.weatherCards;
           this.weatherCards.reverse();
         }
+      })
+      .catch(() => {
+        this.ModalService.showDialog({
+          title: 'Falha na conexão',
+          message: 'Não foi possível conectar-se à API de clima de Marte.',
+          feedback: 'error',
+        });
       })
       .finally(() => {
         this.loaderService.setLoading(false);
