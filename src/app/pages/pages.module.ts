@@ -26,6 +26,7 @@ import { PagesRoutingModule } from './pages-routing.module';
     CardHomeComponent,
     CarouselComponent,
     DatePipe,
+    HomeComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, SwiperModule, MatButtonModule, MatCardModule ],
 })

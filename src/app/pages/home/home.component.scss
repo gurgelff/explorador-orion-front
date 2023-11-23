@@ -2,13 +2,11 @@
 
 @import '../../theme/styles/colors.scss';
 
+app-logout {
+    margin-top: 20px;
+}
 
-::ng-deep body {
-    background-image: url('../../../assets/images/background2.png');
-    background-repeat: no-repeat;
-    background-size: 200%;
-    background-position: center;
-    background-clip: padding-box;
+.moon-centered-large-background {
     overflow-y: hidden;
 }
 
@@ -45,15 +43,14 @@
 
 @keyframes zoomIn {
     0% {
-        background-size: 100%
+        background-size: 30%
     }
 
     100% {
-        background-size: 200%
+        background-size: 100%
     }
 }
 
-::ng-deep body {
-    /* This section calls the slideInFromLeft animation we defined above */
+.moon-centered-large-background {
     animation: 1s ease-out 0s 1 zoomIn;
 }
