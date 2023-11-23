@@ -84,31 +84,30 @@ export class LoginComponent {
   }
 
   /**
-   * Realiza a confirmação de registro utilizando o token da URL.
+   * Realiza a confirmação de registro utilizando o token presente na URL.
    * Se o token estiver presente, faz uma requisição POST para confirmar o registro do usuário.
-   * Em caso de sucesso, redireciona para a página home e exibe uma caixa de diálogo de sucesso.
-   * Em caso de falha, exibe uma caixa de diálogo de erro.
+   * Em caso de sucesso, armazena o token na sessão e redireciona para a página home.
+   * Em caso de falha, redireciona para a página de login, exibe uma caixa de diálogo de erro e encerra a exibição do carregamento.
    */
   public confirmRegistration(): void {
+    this.loaderService.setLoading(true);
     const { token } = this.route.snapshot.queryParams;
     if (token) {
       this.userVerificationService
         .post<IRequestUserVerification, IRegisterResponse>({ token })
-        .then((response) => {
-          this.modalService.showDialog({
-            title: 'Sucesso',
-            message: response.data.message,
-            feedback: 'success',
-          });
+        .then(() => {
+          this.storageService.setItem('token', token, EnumStorageType.SESSION);
           this.router.navigate(['/pages']);
         })
         .catch((error) => {
-          this.router.navigate(['/login']);
           this.modalService.showDialog({
             title: 'Falha!',
             message: error,
             feedback: 'error',
           });
+        })
+        .finally(() => {
+          this.loaderService.setLoading(false);
         });
     }
   }
