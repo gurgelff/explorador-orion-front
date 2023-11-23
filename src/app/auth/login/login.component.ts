@@ -90,8 +90,7 @@ export class LoginComponent {
    * Em caso de falha, redireciona para a página de login, exibe uma caixa de diálogo de erro e encerra a exibição do carregamento.
    */
   public confirmRegistration(): void {
-    this.loaderService.setLoading(true);
-    const { token } = this.route.snapshot.queryParams;
+    const { token } = this.route.snapshot.params;
     if (token) {
       this.userVerificationService
         .post<IRequestUserVerification, IRegisterResponse>({ token })
@@ -105,9 +104,6 @@ export class LoginComponent {
             message: error,
             feedback: 'error',
           });
-        })
-        .finally(() => {
-          this.loaderService.setLoading(false);
         });
     }
   }
