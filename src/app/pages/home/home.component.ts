@@ -42,7 +42,7 @@ export class HomeComponent {
       img: "../../../assets/images/mars-rockets.jpeg", 
       imgAlt:"mars-rocket.jpeg",
       className: "community",
-      callback: () => this.openNewTab("https://discord.gg/ZnRztRXk"),
+      callback: () => this.openNewTab("https://discord.com/invite/kCXUACrC3B"),
     },
     {
       title: "Notícias de Marte", 
