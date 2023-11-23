@@ -1,0 +1,56 @@
+@import '../../theme/styles/theme.scss';
+
+@import '../../theme/styles/colors.scss';
+
+app-logout {
+    margin-top: 20px;
+}
+
+.moon-centered-large-background {
+    overflow-y: hidden;
+}
+
+.mars-cards-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.greetings-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+#app-page-title {
+    color: $primary-500
+}
+
+.mars-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@keyframes zoomIn {
+    0% {
+        background-size: 30%
+    }
+
+    100% {
+        background-size: 100%
+    }
+}
+
+.moon-centered-large-background {
+    animation: 1s ease-out 0s 1 zoomIn;
+}
