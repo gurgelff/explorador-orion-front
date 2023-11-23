@@ -4,6 +4,7 @@ import { LoginComponent } from '../auth/login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { NewsletterSubscriptionComponent } from './newsletter-subscription/newsletter-subscription.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent,
+  },
+  {
+    path: 'newsletter-subscription',
+    component: NewsletterSubscriptionComponent,
   },
   { path: '**', redirectTo: 'login' },
 ];
