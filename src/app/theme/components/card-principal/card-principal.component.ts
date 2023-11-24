@@ -10,7 +10,7 @@ import { IWeatherCard } from '../../../core/models/IWeatherCard';
 })
 export class CardPrincipalComponent {
   @Input() public weatherCard!: IWeatherCard;
-  protected tempSelection = true;
+  public tempSelection = true;
   constructor(private sanitizer: DomSanitizer) {}
 
   /**
@@ -33,11 +33,12 @@ export class CardPrincipalComponent {
       currentVariation === EnumVariation.HIGHER
         ? 'rotate(180 8.5 5.5)'
         : 'rotate(0 8.5 5.5';
-    const fill =
-      currentVariation === EnumVariation.HIGHER ? '#A3FCB6' : '#FF7474';
 
-    const height = currentVariation === EnumVariation.HIGHER ? '35px' : '17px';
-    const width = currentVariation === EnumVariation.HIGHER ? '25px' : '17px';
+    const fill =
+      currentVariation !== EnumVariation.HIGHER ? '#FF7474' : '#A3FCB6';
+
+    const height = currentVariation !== EnumVariation.HIGHER ? '35px' : '17px';
+    const width = currentVariation !== EnumVariation.HIGHER ? '25px' : '17px';
 
     const svgElement = `<svg
       width="20"
@@ -64,7 +65,7 @@ export class CardPrincipalComponent {
    * True sera usado para escala em Celsius
    * False sera usado para escala em Farhenheit
    */
-  public onClick() {
+  public onClick():void {
     event?.preventDefault();
     this.tempSelection = !this.tempSelection
   }
