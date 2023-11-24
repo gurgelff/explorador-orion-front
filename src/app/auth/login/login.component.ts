@@ -43,7 +43,11 @@ export class LoginComponent {
     });
   }
 
-  ngOnInit(): void {
+  /**
+   * Método do ciclo de vida chamado quando o componente é inicializado.
+   * Chama o método que confirma o cadastro do usuario.
+   */
+  public ngOnInit(): void {
     this.confirmRegistration();
   }
 
