@@ -8,3 +8,27 @@
   cursor: pointer;
   padding: 25px 0;
 }
+
+@mixin responsive($size-breakpoint: none, $is-min: false) {
+  $width: 0px;
+
+  @if $size-breakpoint == sm {
+    $width: 480px;
+  } @else if $size-breakpoint == md {
+    $width: 768px;
+  } @else if $size-breakpoint == lg {
+    $width: 992px;
+  } @else if type-of($size-breakpoint) == number {
+    $width: $size-breakpoint;
+  }
+
+  @if $is-min == false {
+    @media (max-width: $width) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $width) {
+      @content;
+    }
+  }
+}
