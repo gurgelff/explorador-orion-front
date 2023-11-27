@@ -1,12 +1,25 @@
 @import '../../theme/styles/theme.scss';
-
 @import '../../theme/styles/colors.scss';
-
+@import '../../theme/styles/mixins.scss';
 
 .moon-right-large-background{
   height: 120vh;
+  @include responsive(sm) {
+    height: 150vh;
+  }
+  @include responsive(md) {
+    height: 160vh;
+  }
+  @include responsive(lg) {
+    height: 180vh;
+  }
+  
 }
 .register-container {
+  @include responsive(sm) {
+    width: 85%;
+  }
+
   position: relative;
   top: 30%;
   left: 50%;
@@ -24,12 +37,21 @@ mat-error {
 }
 
 .text-info h1 {
+  
+  @include responsive(sm) {
+    font-size: 2rem;
+  }
+    
   font-size: 35px;
   margin-bottom: 8px;
   margin-left: 0px;
 }
 
 .text-info span {
+  @include responsive(sm) {
+      font-size: 0.8rem;
+  }
+
   font-size: 13px;
   margin-left: -1px;
 }
@@ -38,11 +60,11 @@ mat-error {
 .errors {
   width: 100%;
   margin-top: 20px;
+  
 }
 
 .hidePass-btn {
   background-color: var(--foundation-primary);
-
 }
 
 .ngErrors {
