@@ -9,6 +9,14 @@
   padding: 25px 0;
 }
 
+/*
+ * Mixin que insere media queries em um bloco, podendo ter 4 entradas:
+ *
+ * - sm: medida para larguras pequenas
+ * - md: medida para larguras médias como tablets
+ * - lg: medida para larguras maiores como tablets na orientação paisagem
+ * - valor numérico: pode passar uma medida numérica na escala de pixels, rem etc
+ */
 @mixin responsive($size-breakpoint: none, $is-min: false) {
   $width: 0px;
 
