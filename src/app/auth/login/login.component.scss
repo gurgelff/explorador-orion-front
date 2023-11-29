@@ -2,7 +2,7 @@
 @import "../../theme/styles/mixins.scss";
 
 h1 {
-  font-size: 6rem;
+  font-size: 4rem;
   margin-bottom: 2rem;
 
   @include responsive(lg) {
