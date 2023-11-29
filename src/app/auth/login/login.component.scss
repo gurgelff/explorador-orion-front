@@ -2,8 +2,8 @@
 @import "../../theme/styles/mixins.scss";
 
 h1 {
-  font-size: 4rem;
-  margin-bottom: 2rem;
+  font-size: 3.5rem;
+  margin-bottom: 1.9rem;
 
   @include responsive(lg) {
     font-size: 3.2rem;
@@ -22,7 +22,7 @@ h1 {
 }
 
 p {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: normal;
   font-weight: normal;
 
@@ -69,7 +69,7 @@ a {
 .display-text,
 .input-section,
 .login-section {
-  width: 60%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
@@ -83,7 +83,6 @@ a {
   }
 
   @include responsive(sm) {
-    // border: 1px solid tomato;
     width: 90%;
   }
 }
