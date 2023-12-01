@@ -91,7 +91,6 @@ a {
 
 ::ng-deep .mat-mdc-checkbox label {
   @include responsive(sm) {
-    cursor: pointer;
     font-size: 0.6rem;
     font-weight: 600;
   }
