@@ -17,6 +17,7 @@ export class BaseAPI {
       language: 'pt-br',
       ...(bearerToken && { authorization: `Bearer ${bearerToken}` }),
       'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': 'true',
     };
 
     return headers;
