@@ -16,7 +16,7 @@ export class StorageService {
     value: string,
     storage: EnumStorageType = EnumStorageType.LOCAL
   ): void {
-    window[storage].setItem(key, value);
+    window[storage].setItem(key, encrypt(value, key));
   }
 
   /**
@@ -26,7 +26,9 @@ export class StorageService {
    */
   public getItem(key: string): string | null {
     const { value, storageType } = this.checkStorage(key);
-    return value && storageType ? window[storageType].getItem(key) : null;
+    return value && storageType
+      ? decrypt(window[storageType].getItem(key), key)
+      : null;
   }
 
   /**
@@ -58,3 +60,31 @@ export class StorageService {
     return { value: localValue, storageType: EnumStorageType.LOCAL };
   }
 }
+
+/**
+ * Criptografa o valor fornecido usando a chave fornecida.
+ * @param value O valor a ser criptografado.
+ * @param key A chave a ser usada na criptografia.
+ * @returns O valor criptografado.
+ */
+const encrypt = (value: string, key: string): string => {
+  return value
+    .split('')
+    .map((char) => String.fromCharCode(char.charCodeAt(0) + key.length))
+    .join('');
+};
+
+/**
+ * Descriptografa o valor fornecido usando a chave fornecida.
+ * @param value O valor a ser descriptografado.
+ * @param key A chave a ser usada na descriptografia.
+ * @returns O valor descriptografado.
+ */
+const decrypt = (value: string | null, key: string): string => {
+  if (!value) return '';
+
+  return value
+    .split('')
+    .map((char) => String.fromCharCode(char.charCodeAt(0) - key.length))
+    .join('');
+};
