@@ -2,22 +2,22 @@
 @import "../../theme/styles/mixins.scss";
 
 h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1.9rem;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
 
   @include responsive(lg) {
-    font-size: 3.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.6rem;
+    margin-bottom: 1.4rem;
   }
 
   @include responsive(md) {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.4rem;
+    margin-bottom: 0.8rem;
   }
 
   @include responsive(sm) {
     font-size: 2.2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
   }
 }
 
@@ -94,6 +94,10 @@ a {
     font-size: 0.6rem;
     font-weight: 600;
   }
+}
+
+.mat-mdc-unelevated-button.mat-mdc-button-base {
+  padding: 30px 0;
 }
 
 .btn-enter {
